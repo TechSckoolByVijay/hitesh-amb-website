@@ -1,42 +1,190 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
   <defs>
-    <linearGradient id="bgGradHanuman" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#FF6347;stop-opacity:1" />
+    <linearGradient id="saffronSky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFE5B4;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#FF9933;stop-opacity:1" />
+      <stop offset="80%" style="stop-color:#FF6347;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#DC143C;stop-opacity:1" />
     </linearGradient>
+    
+    <radialGradient id="flameGrad" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:1" />
+      <stop offset="20%" style="stop-color:#FFF9E6;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="80%" style="stop-color:#FF8C00;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF4500;stop-opacity:0.8" />
+    </radialGradient>
+    
+    <linearGradient id="templeStone" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#F5DEB3;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#DEB887;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B7355;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="gadaGold" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFE873;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#DAA520;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B8860B;stop-opacity:1" />
+    </linearGradient>
+    
+    <filter id="glowStrong">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="shadowDeep">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="4" dy="10" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.5"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="flameFlicker">
+      <feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="3" result="turbulence"/>
+      <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="3" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
   </defs>
   
-  <!-- Background -->
-  <rect width="200" height="200" fill="url(#bgGradHanuman)"/>
+  <!-- Saffron sky background -->
+  <rect width="400" height="400" fill="url(#saffronSky)"/>
   
-  <!-- Decorative border -->
-  <rect x="10" y="10" width="180" height="180" rx="10" fill="none" stroke="#FFD700" stroke-width="3"/>
-  <rect x="15" y="15" width="170" height="170" rx="8" fill="none" stroke="#FFA500" stroke-width="2"/>
+  <!-- Ornamental outer border -->
+  <rect x="15" y="15" width="370" height="370" rx="25" fill="none" stroke="url(#gadaGold)" stroke-width="8" filter="url(#shadowDeep)"/>
+  <rect x="25" y="25" width="350" height="350" rx="20" fill="none" stroke="#FFA500" stroke-width="4"/>
+  <rect x="30" y="30" width="340" height="340" rx="18" fill="none" stroke="#FFD700" stroke-width="2" opacity="0.8"/>
   
-  <!-- Mountain silhouette (Salasar) -->
-  <path d="M 30 120 L 60 80 L 90 100 L 100 85 L 110 100 L 140 80 L 170 120 Z" fill="#8B4513" opacity="0.5"/>
+  <!-- Corner decorative flames -->
+  <g opacity="0.7" filter="url(#glowStrong)">
+    <path d="M 50 50 Q 45 40, 50 30 Q 55 40, 50 50" fill="#FF6347"/>
+    <path d="M 350 50 Q 345 40, 350 30 Q 355 40, 350 50" fill="#FF6347"/>
+    <path d="M 50 350 Q 45 360, 50 370 Q 55 360, 50 350" fill="#FF6347"/>
+    <path d="M 350 350 Q 345 360, 350 370 Q 355 360, 350 350" fill="#FF6347"/>
+  </g>
   
-  <!-- Temple -->
-  <rect x="80" y="105" width="40" height="35" fill="#FFE4B5"/>
-  <path d="M 75 105 L 100 85 L 125 105 Z" fill="#FFD700"/>
-  <rect x="95" y="120" width="10" height="20" fill="#8B4513"/>
+  <!-- Sacred Gada (mace) - central symbol -->
+  <g filter="url(#shadowDeep)">
+    <!-- Gada handle -->
+    <rect x="195" y="80" width="10" height="100" rx="5" fill="url(#gadaGold)"/>
+    <rect x="196" y="80" width="8" height="100" rx="4" fill="#FFA500" opacity="0.5"/>
+    
+    <!-- Gada head (spherical with spikes) -->
+    <circle cx="200" cy="70" r="25" fill="url(#gadaGold)"/>
+    <circle cx="200" cy="70" r="22" fill="#FFD700" opacity="0.7"/>
+    <circle cx="195" cy="65" r="18" fill="#FFE873" opacity="0.5"/>
+    
+    <!-- Gada spikes -->
+    <g fill="#DAA520">
+      <path d="M 200 45 L 195 55 L 205 55 Z"/>
+      <path d="M 220 60 L 215 65 L 218 72 Z"/>
+      <path d="M 225 75 L 218 78 L 220 85 Z"/>
+      <path d="M 220 90 L 215 85 L 218 78 Z"/>
+      <path d="M 180 60 L 185 65 L 182 72 Z"/>
+      <path d="M 175 75 L 182 78 L 180 85 Z"/>
+      <path d="M 180 90 L 185 85 L 182 78 Z"/>
+    </g>
+    
+    <!-- Gada bottom ornament -->
+    <circle cx="200" cy="180" r="12" fill="url(#gadaGold)"/>
+    <circle cx="200" cy="180" r="9" fill="#FFD700" opacity="0.7"/>
+  </g>
   
-  <!-- Gada (mace) symbol -->
-  <line x1="100" y1="50" x2="100" y2="75" stroke="#FFD700" stroke-width="4" stroke-linecap="round"/>
-  <circle cx="100" cy="47" r="8" fill="#FFD700"/>
-  <circle cx="100" cy="47" r="5" fill="#FFA500"/>
+  <!-- Sacred flame (Aarti) with realistic fire effect -->
+  <g filter="url(#glowStrong)">
+    <!-- Diya base -->
+    <ellipse cx="200" cy="205" rx="30" ry="8" fill="#8B4513"/>
+    <ellipse cx="200" cy="203" rx="28" ry="7" fill="#A0522D" opacity="0.8"/>
+    
+    <!-- Flame layers for depth and realism -->
+    <ellipse cx="200" cy="180" rx="20" ry="35" fill="url(#flameGrad)" filter="url(#flameFlicker)"/>
+    <ellipse cx="200" cy="175" rx="15" ry="28" fill="#FFD700" opacity="0.9"/>
+    <ellipse cx="200" cy="172" rx="10" ry="20" fill="#FFF9E6" opacity="0.8"/>
+    <ellipse cx="200" cy="165" rx="6" ry="12" fill="#FFFFFF" opacity="0.9"/>
+    
+    <!-- Flame tips -->
+    <path d="M 200 145 Q 195 150, 200 160 Q 205 150, 200 145" fill="#FFFFFF" opacity="0.7"/>
+  </g>
   
-  <!-- Devotional flame -->
-  <ellipse cx="100" cy="60" rx="8" ry="12" fill="#FFA500" opacity="0.7"/>
-  <ellipse cx="100" cy="58" rx="5" ry="8" fill="#FFD700" opacity="0.8"/>
+  <!-- Mountain range (Salasar landscape) -->
+  <g opacity="0.4" filter="url(#shadowDeep)">
+    <path d="M 50 260 L 100 200 L 150 230 L 200 180 L 250 230 L 300 200 L 350 260 Z" fill="#8B4513"/>
+    <path d="M 50 260 L 100 200 L 150 230 L 200 180 L 250 230 L 300 200 L 350 260 Z" fill="#FFFFFF" opacity="0.1"/>
+  </g>
   
-  <!-- Text -->
-  <text x="100" y="155" font-family="Arial, sans-serif" font-size="13" fill="#FFD700" text-anchor="middle" font-weight="bold">Lord Hanuman</text>
-  <text x="100" y="172" font-family="Arial, sans-serif" font-size="11" fill="#FFF8DC" text-anchor="middle">Salasar Balaji</text>
+  <!-- Temple structure (Salasar Balaji Mandir) -->
+  <g filter="url(#shadowDeep)">
+    <!-- Temple base platform -->
+    <rect x="120" y="250" width="160" height="15" fill="#8B4513"/>
+    <rect x="120" y="250" width="160" height="5" fill="#A0522D" opacity="0.7"/>
+    
+    <!-- Main temple body -->
+    <rect x="140" y="220" width="120" height="80" fill="url(#templeStone)"/>
+    <rect x="140" y="220" width="120" height="80" fill="#FFF8DC" opacity="0.2"/>
+    
+    <!-- Temple pillars -->
+    <rect x="155" y="230" width="12" height="60" fill="#8B7355"/>
+    <rect x="233" y="230" width="12" height="60" fill="#8B7355"/>
+    <rect x="157" y="230" width="8" height="60" fill="#DEB887" opacity="0.6"/>
+    <rect x="235" y="230" width="8" height="60" fill="#DEB887" opacity="0.6"/>
+    
+    <!-- Central entrance -->
+    <path d="M 180 290 L 180 245 Q 200 230, 220 245 L 220 290 Z" fill="#4A4A4A" opacity="0.7"/>
+    <path d="M 185 285 L 185 250 Q 200 238, 215 250 L 215 285 Z" fill="#2C2C2C" opacity="0.5"/>
+    
+    <!-- Shikhara (temple top) -->
+    <path d="M 200 195 L 140 220 L 260 220 Z" fill="url(#templeStone)"/>
+    <path d="M 200 195 L 140 220 L 260 220 Z" fill="#FFE4C4" opacity="0.5"/>
+    
+    <!-- Temple flag -->
+    <rect x="198" y="185" width="4" height="18" fill="#DC143C"/>
+    <path d="M 202 190 L 218 194 L 202 198 Z" fill="#FF9933"/>
+    
+    <!-- Decorative temple kalash (pinnacle) -->
+    <circle cx="200" cy="195" r="8" fill="url(#gadaGold)"/>
+    <ellipse cx="200" cy="190" rx="5" ry="3" fill="#FFD700"/>
+  </g>
   
-  <!-- Decorative corner elements -->
-  <path d="M 30 30 L 35 25 L 40 30" fill="none" stroke="#FFD700" stroke-width="2"/>
-  <path d="M 170 30 L 165 25 L 160 30" fill="none" stroke="#FFD700" stroke-width="2"/>
-  <path d="M 30 170 L 35 175 L 40 170" fill="none" stroke="#FFD700" stroke-width="2"/>
-  <path d="M 170 170 L 165 175 L 160 170" fill="none" stroke="#FFD700" stroke-width="2"/>
+  <!-- Name banner with ornate styling -->
+  <rect x="70" y="315" width="260" height="60" rx="12" fill="#DC143C" opacity="0.95" filter="url(#shadowDeep)"/>
+  <rect x="75" y="320" width="250" height="50" rx="10" fill="none" stroke="url(#gadaGold)" stroke-width="4"/>
+  <rect x="80" y="325" width="240" height="40" rx="8" fill="none" stroke="#FFD700" stroke-width="2" opacity="0.7"/>
+  
+  <!-- Divine text -->
+  <text x="200" y="348" font-family="Georgia, serif" font-size="22" fill="#FFD700" text-anchor="middle" font-weight="bold" letter-spacing="2">Lord Hanuman</text>
+  <text x="200" y="367" font-family="Georgia, serif" font-size="16" fill="#FFF8DC" text-anchor="middle" font-weight="bold">Salasar Balaji</text>
+  
+  <!-- Sacred Om near banner -->
+  <g opacity="0.6" filter="url(#glowStrong)">
+    <text x="90" y="350" font-family="serif" font-size="24" fill="#FFD700" text-anchor="middle">ॐ</text>
+    <text x="310" y="350" font-family="serif" font-size="24" fill="#FFD700" text-anchor="middle">ॐ</text>
+  </g>
+  
+  <!-- Lotus petals decoration at bottom -->
+  <g opacity="0.5">
+    <ellipse cx="120" cy="345" rx="10" ry="18" fill="#FFB6C1" transform="rotate(-35 120 345)"/>
+    <ellipse cx="145" cy="340" rx="10" ry="18" fill="#FF69B4" transform="rotate(-20 145 340)"/>
+    <ellipse cx="170" cy="338" rx="10" ry="18" fill="#FFB6C1" transform="rotate(-10 170 338)"/>
+    <ellipse cx="230" cy="338" rx="10" ry="18" fill="#FFB6C1" transform="rotate(10 230 338)"/>
+    <ellipse cx="255" cy="340" rx="10" ry="18" fill="#FF69B4" transform="rotate(20 255 340)"/>
+    <ellipse cx="280" cy="345" rx="10" ry="18" fill="#FFB6C1" transform="rotate(35 280 345)"/>
+  </g>
+  
+  <!-- Sacred stars/sparkles -->
+  <g fill="#FFD700" opacity="0.6" font-family="serif" font-size="24">
+    <text x="200" y="50" text-anchor="middle">✦</text>
+    <text x="70" y="200" text-anchor="middle">✦</text>
+    <text x="330" y="200" text-anchor="middle">✦</text>
+  </g>
+  
+  <!-- Jai Shri Ram small text -->
+  <text x="200" y="395" font-family="Georgia, serif" font-size="12" fill="#FFD700" text-anchor="middle" opacity="0.7" letter-spacing="1">जय श्री राम</text>
 </svg>

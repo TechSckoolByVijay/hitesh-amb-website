@@ -1,52 +1,184 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
   <defs>
     <radialGradient id="plateGrad" cx="50%" cy="50%">
-      <stop offset="0%" style="stop-color:#FFE4B5;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#FFFACD;stop-opacity:1" />
+      <stop offset="60%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="90%" style="stop-color:#DAA520;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B8860B;stop-opacity:1" />
+    </radialGradient>
+    
+    <radialGradient id="plateShine" cx="30%" cy="30%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.9" />
+      <stop offset="40%" style="stop-color:#FFFACD;stop-opacity:0.5" />
+      <stop offset="100%" style="stop-color:#FFD700;stop-opacity:0" />
+    </radialGradient>
+    
+    <radialGradient id="innerPlateRim" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#F5DEB3;stop-opacity:1" />
       <stop offset="70%" style="stop-color:#DEB887;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#D2691E;stop-opacity:1" />
     </radialGradient>
-    <filter id="plateShadow">
-      <feDropShadow dx="2" dy="5" stdDeviation="5" flood-opacity="0.3"/>
+    
+    <radialGradient id="ladduOnPlate" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#FFE4A0;stop-opacity:1" />
+      <stop offset="70%" style="stop-color:#F4C430;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#CC8800;stop-opacity:1" />
+    </radialGradient>
+    
+    <radialGradient id="pedaOnPlate" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#FFF8E7;stop-opacity:1" />
+      <stop offset="60%" style="stop-color:#F5E6D3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D9B99B;stop-opacity:1" />
+    </radialGradient>
+    
+    <filter id="plateShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="15"/>
+      <feOffset dx="5" dy="25" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.5"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="metalShine">
+      <feSpecularLighting in="SourceGraphic" surfaceScale="5" specularConstant="0.8" specularExponent="25" lighting-color="white" result="spec">
+        <fePointLight x="120" y="80" z="250"/>
+      </feSpecularLighting>
+      <feComposite in="SourceGraphic" in2="spec" operator="arithmetic" k1="0" k2="1" k3="0.8" k4="0"/>
+    </filter>
+    
+    <filter id="foodShadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+      <feOffset dx="2" dy="6" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.4"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
   </defs>
   
-  <!-- Plate shadow -->
-  <ellipse cx="100" cy="155" rx="75" ry="12" fill="#000" opacity="0.2"/>
+  <!-- Shadow beneath plate -->
+  <ellipse cx="200" cy="370" rx="160" ry="30" fill="#000000" opacity="0.3"/>
   
-  <!-- Main plate -->
-  <ellipse cx="100" cy="100" rx="80" ry="25" fill="url(#plateGrad)" filter="url(#plateShadow)"/>
-  <ellipse cx="100" cy="95" rx="80" ry="20" fill="#F5DEB3"/>
+  <!-- Main thali plate with metallic gradient -->
+  <circle cx="200" cy="200" r="150" fill="url(#plateGrad)" filter="url(#plateShadow)"/>
   
-  <!-- Plate rim decoration -->
-  <ellipse cx="100" cy="95" rx="75" ry="18" fill="none" stroke="#D2691E" stroke-width="2"/>
-  <ellipse cx="100" cy="95" rx="68" ry="16" fill="#FFF8DC"/>
+  <!-- Metallic shine effect -->
+  <circle cx="200" cy="200" r="150" fill="url(#plateShine)" opacity="0.6" filter="url(#metalShine)"/>
   
-  <!-- Prasad items on plate -->
+  <!-- Outer decorative rim pattern -->
+  <circle cx="200" cy="200" r="150" fill="none" stroke="#B8860B" stroke-width="3"/>
+  <circle cx="200" cy="200" r="145" fill="none" stroke="#FFD700" stroke-width="1.5" opacity="0.7"/>
+  <circle cx="200" cy="200" r="155" fill="none" stroke="#DAA520" stroke-width="2" opacity="0.5"/>
   
-  <!-- Laddu 1 -->
-  <circle cx="75" cy="90" r="15" fill="#FFD700"/>
-  <circle cx="72" cy="85" r="3" fill="#FFE55C" opacity="0.7"/>
-  <circle cx="78" cy="88" r="2" fill="#FFE55C" opacity="0.6"/>
+  <!-- Traditional decorative pattern on rim -->
+  <g opacity="0.4">
+    <circle cx="200" cy="50" r="4" fill="#8B4513"/>
+    <circle cx="267" cy="67" r="4" fill="#8B4513"/>
+    <circle cx="323" cy="123" r="4" fill="#8B4513"/>
+    <circle cx="350" cy="200" r="4" fill="#8B4513"/>
+    <circle cx="323" cy="277" r="4" fill="#8B4513"/>
+    <circle cx="267" cy="333" r="4" fill="#8B4513"/>
+    <circle cx="200" cy="350" r="4" fill="#8B4513"/>
+    <circle cx="133" cy="333" r="4" fill="#8B4513"/>
+    <circle cx="77" cy="277" r="4" fill="#8B4513"/>
+    <circle cx="50" cy="200" r="4" fill="#8B4513"/>
+    <circle cx="77" cy="123" r="4" fill="#8B4513"/>
+    <circle cx="133" cy="67" r="4" fill="#8B4513"/>
+  </g>
   
-  <!-- Laddu 2 -->
-  <circle cx="125" cy="90" r="15" fill="#FFA500"/>
-  <circle cx="122" cy="85" r="3" fill="#FFE55C" opacity="0.7"/>
-  <circle cx="128" cy="88" r="2" fill="#FFE55C" opacity="0.6"/>
+  <!-- Inner plate surface -->
+  <circle cx="200" cy="200" r="120" fill="url(#innerPlateRim)"/>
+  <circle cx="200" cy="200" r="120" fill="url(#plateShine)" opacity="0.3"/>
   
-  <!-- Peda -->
-  <ellipse cx="100" cy="95" rx="12" ry="8" fill="#FFE4B5"/>
-  <ellipse cx="100" cy="92" rx="12" ry="4" fill="#FFF8DC"/>
-  <circle cx="100" cy="92" r="2" fill="#DEB887"/>
+  <!-- Central raised portion -->
+  <circle cx="200" cy="200" r="110" fill="#F5DEB3"/>
+  <circle cx="200" cy="200" r="110" fill="#FFFFFF" opacity="0.2"/>
   
-  <!-- Decorative flowers -->
-  <circle cx="90" cy="85" r="3" fill="#FF69B4"/>
-  <circle cx="110" cy="85" r="3" fill="#FF1493"/>
+  <!-- Prasad items arranged on plate -->
   
-  <!-- Scattered petals -->
-  <ellipse cx="85" cy="100" rx="2" ry="4" fill="#FFB6C1" transform="rotate(30 85 100)"/>
-  <ellipse cx="115" cy="100" rx="2" ry="4" fill="#FFB6C1" transform="rotate(-30 115 100)"/>
+  <!-- Center Laddu (largest) -->
+  <circle cx="200" cy="200" r="35" fill="url(#ladduOnPlate)" filter="url(#foodShadow)"/>
+  <!-- Laddu texture dots -->
+  <g opacity="0.4">
+    <circle cx="190" cy="195" r="2" fill="#CC8800"/>
+    <circle cx="210" cy="195" r="2" fill="#CC8800"/>
+    <circle cx="200" cy="210" r="2" fill="#CC8800"/>
+    <circle cx="195" cy="205" r="1.5" fill="#CC8800"/>
+    <circle cx="205" cy="205" r="1.5" fill="#CC8800"/>
+  </g>
+  <!-- Cashew on laddu -->
+  <ellipse cx="195" cy="190" rx="5" ry="3" fill="#FFE4C4" transform="rotate(-20 195 190)"/>
+  <ellipse cx="208" cy="205" rx="5" ry="3" fill="#FFE4C4" transform="rotate(30 208 205)"/>
   
-  <!-- Sacred tulsi leaves -->
-  <path d="M 95 88 Q 93 85, 95 82 Q 97 85, 95 88" fill="#228B22"/>
-  <path d="M 105 88 Q 103 85, 105 82 Q 107 85, 105 88" fill="#228B22"/>
+  <!-- Top Peda -->
+  <ellipse cx="200" cy="130" rx="28" ry="18" fill="url(#pedaOnPlate)" filter="url(#foodShadow)"/>
+  <ellipse cx="200" cy="128" rx="26" ry="16" fill="#FFF8E7" opacity="0.5"/>
+  <!-- Peda center indent -->
+  <ellipse cx="200" cy="130" rx="8" ry="5" fill="#E8D4B8" opacity="0.6"/>
+  <!-- Pistachio garnish -->
+  <ellipse cx="198" cy="128" rx="3" ry="2" fill="#90EE90"/>
+  <ellipse cx="202" cy="128" rx="3" ry="2" fill="#90EE90"/>
+  
+  <!-- Left Laddu -->
+  <circle cx="135" cy="195" r="30" fill="url(#ladduOnPlate)" filter="url(#foodShadow)"/>
+  <g opacity="0.4">
+    <circle cx="130" cy="190" r="2" fill="#CC8800"/>
+    <circle cx="140" cy="200" r="2" fill="#CC8800"/>
+  </g>
+  <ellipse cx="132" cy="188" rx="4" ry="2.5" fill="#FFE4C4" transform="rotate(-15 132 188)"/>
+  
+  <!-- Right Laddu -->
+  <circle cx="265" cy="195" r="30" fill="url(#ladduOnPlate)" filter="url(#foodShadow)"/>
+  <g opacity="0.4">
+    <circle cx="260" cy="190" r="2" fill="#CC8800"/>
+    <circle cx="270" cy="200" r="2" fill="#CC8800"/>
+  </g>
+  <ellipse cx="268" cy="188" rx="4" ry="2.5" fill="#FFE4C4" transform="rotate(15 268 188)"/>
+  
+  <!-- Bottom Left Peda -->
+  <ellipse cx="155" cy="255" rx="26" ry="16" fill="url(#pedaOnPlate)" filter="url(#foodShadow)"/>
+  <ellipse cx="155" cy="253" rx="24" ry="14" fill="#FFF8E7" opacity="0.5"/>
+  <ellipse cx="155" cy="255" rx="7" ry="4" fill="#E8D4B8" opacity="0.6"/>
+  <ellipse cx="153" cy="253" rx="2.5" ry="1.5" fill="#90EE90"/>
+  <ellipse cx="157" cy="253" rx="2.5" ry="1.5" fill="#90EE90"/>
+  
+  <!-- Bottom Right Peda -->
+  <ellipse cx="245" cy="255" rx="26" ry="16" fill="url(#pedaOnPlate)" filter="url(#foodShadow)"/>
+  <ellipse cx="245" cy="253" rx="24" ry="14" fill="#FFF8E7" opacity="0.5"/>
+  <ellipse cx="245" cy="255" rx="7" ry="4" fill="#E8D4B8" opacity="0.6"/>
+  <ellipse cx="243" cy="253" rx="2.5" ry="1.5" fill="#90EE90"/>
+  <ellipse cx="247" cy="253" rx="2.5" ry="1.5" fill="#90EE90"/>
+  
+  <!-- Bottom Small Laddu -->
+  <circle cx="200" cy="270" r="22" fill="url(#ladduOnPlate)" filter="url(#foodShadow)"/>
+  <g opacity="0.4">
+    <circle cx="195" cy="268" r="1.5" fill="#CC8800"/>
+    <circle cx="205" cy="268" r="1.5" fill="#CC8800"/>
+  </g>
+  <ellipse cx="197" cy="265" rx="3.5" ry="2" fill="#FFE4C4" transform="rotate(-10 197 265)"/>
+  
+  <!-- Scattered cashews and almonds around items -->
+  <ellipse cx="175" cy="175" rx="4" ry="2.5" fill="#FFE4C4" opacity="0.9" transform="rotate(35 175 175)"/>
+  <ellipse cx="225" cy="175" rx="4" ry="2.5" fill="#FFE4C4" opacity="0.9" transform="rotate(-35 225 175)"/>
+  <ellipse cx="170" cy="225" rx="3.5" ry="2" fill="#F0E68C" opacity="0.9" transform="rotate(60 170 225)"/>
+  <ellipse cx="230" cy="225" rx="3.5" ry="2" fill="#F0E68C" opacity="0.9" transform="rotate(-60 230 225)"/>
+  
+  <!-- Saffron strands scattered -->
+  <line x1="180" y1="210" x2="175" y2="218" stroke="#FF6347" stroke-width="1" opacity="0.8"/>
+  <line x1="220" y1="210" x2="225" y2="218" stroke="#FF6347" stroke-width="1" opacity="0.8"/>
+  <line x1="190" y1="240" x2="188" y2="248" stroke="#FF6347" stroke-width="1" opacity="0.8"/>
+  <line x1="210" y1="240" x2="212" y2="248" stroke="#FF6347" stroke-width="1" opacity="0.8"/>
+  
+  <!-- Final metallic rim highlights -->
+  <circle cx="200" cy="200" r="150" fill="none" stroke="#FFFFFF" stroke-width="2" opacity="0.25" stroke-dasharray="10,5"/>
+  
+  <!-- Plate bottom edge shadow for depth -->
+  <ellipse cx="200" cy="350" rx="145" ry="8" fill="#B8860B" opacity="0.4"/>
 </svg>

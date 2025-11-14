@@ -1,34 +1,151 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
   <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#4A90E2;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#1E3A8A;stop-opacity:1" />
     </linearGradient>
+    
+    <radialGradient id="sunGlow" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#FFF9E6;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#FFE873;stop-opacity:0.8" />
+      <stop offset="70%" style="stop-color:#FFD700;stop-opacity:0.5" />
+      <stop offset="100%" style="stop-color:#FFA500;stop-opacity:0" />
+    </radialGradient>
+    
+    <linearGradient id="templeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFE4C4;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#DEB887;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D2691E;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="goldBorder" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFE873;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#DAA520;stop-opacity:1" />
+    </linearGradient>
+    
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8"/>
+      <feOffset dx="3" dy="8" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.4"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </defs>
   
-  <!-- Background -->
-  <rect width="200" height="200" fill="url(#bgGrad)"/>
+  <!-- Sky background with gradient -->
+  <rect width="400" height="400" fill="url(#skyGrad)"/>
   
-  <!-- Decorative border -->
-  <rect x="10" y="10" width="180" height="180" rx="10" fill="none" stroke="#FFD700" stroke-width="3"/>
-  <rect x="15" y="15" width="170" height="170" rx="8" fill="none" stroke="#FFA500" stroke-width="2"/>
+  <!-- Sun glow in background -->
+  <circle cx="200" cy="80" r="80" fill="url(#sunGlow)" opacity="0.6"/>
   
-  <!-- Om symbol simplified -->
-  <circle cx="100" cy="60" r="30" fill="none" stroke="#FFD700" stroke-width="4"/>
-  <path d="M 100 40 Q 90 50, 100 60 Q 110 50, 100 40" fill="#FFD700"/>
-  <text x="100" y="68" font-family="serif" font-size="32" fill="#FFD700" text-anchor="middle" font-weight="bold">ॐ</text>
+  <!-- Outer ornamental border -->
+  <rect x="15" y="15" width="370" height="370" rx="25" fill="none" stroke="url(#goldBorder)" stroke-width="8" filter="url(#shadow)"/>
+  <rect x="25" y="25" width="350" height="350" rx="20" fill="none" stroke="#FFA500" stroke-width="4"/>
+  <rect x="30" y="30" width="340" height="340" rx="18" fill="none" stroke="#FFD700" stroke-width="2" opacity="0.7"/>
   
-  <!-- Temple silhouette -->
-  <path d="M 100 90 L 70 110 L 70 140 L 130 140 L 130 110 Z" fill="#FFE4B5" opacity="0.7"/>
-  <path d="M 65 110 L 100 85 L 135 110" fill="none" stroke="#FFD700" stroke-width="2"/>
+  <!-- Corner decorative elements -->
+  <g opacity="0.8">
+    <circle cx="50" cy="50" r="12" fill="#FFD700"/>
+    <circle cx="350" cy="50" r="12" fill="#FFD700"/>
+    <circle cx="50" cy="350" r="12" fill="#FFD700"/>
+    <circle cx="350" cy="350" r="12" fill="#FFD700"/>
+    
+    <path d="M 35 50 L 50 35 L 65 50 L 50 65 Z" fill="#FF9933" opacity="0.7"/>
+    <path d="M 335 50 L 350 35 L 365 50 L 350 65 Z" fill="#FF9933" opacity="0.7"/>
+    <path d="M 35 350 L 50 335 L 65 350 L 50 365 Z" fill="#FF9933" opacity="0.7"/>
+    <path d="M 335 350 L 350 335 L 365 350 L 350 365 Z" fill="#FF9933" opacity="0.7"/>
+  </g>
   
-  <!-- Text -->
-  <text x="100" y="165" font-family="Arial, sans-serif" font-size="14" fill="#FFD700" text-anchor="middle" font-weight="bold">Khatu Shyam</text>
-  <text x="100" y="182" font-family="Arial, sans-serif" font-size="11" fill="#FFF8DC" text-anchor="middle">Baba</text>
+  <!-- Sacred Om symbol at top with glow -->
+  <g filter="url(#glow)">
+    <circle cx="200" cy="100" r="45" fill="#FFD700" opacity="0.3"/>
+    <text x="200" y="125" font-family="serif" font-size="60" fill="#FFD700" text-anchor="middle" font-weight="bold">ॐ</text>
+  </g>
   
-  <!-- Decorative elements -->
-  <circle cx="40" cy="40" r="5" fill="#FFD700" opacity="0.6"/>
-  <circle cx="160" cy="40" r="5" fill="#FFD700" opacity="0.6"/>
-  <circle cx="40" cy="160" r="5" fill="#FFD700" opacity="0.6"/>
-  <circle cx="160" cy="160" r="5" fill="#FFD700" opacity="0.6"/>
+  <!-- Temple structure -->
+  <g filter="url(#shadow)">
+    <!-- Temple dome/shikhara -->
+    <path d="M 200 150 L 130 200 L 130 210 L 270 210 L 270 200 Z" fill="url(#templeGrad)"/>
+    <path d="M 200 150 L 130 200 L 270 200 Z" fill="#FFE4C4" opacity="0.5"/>
+    
+    <!-- Temple flag at top -->
+    <rect x="198" y="140" width="4" height="20" fill="#DC143C"/>
+    <path d="M 202 145 L 220 150 L 202 155 Z" fill="#FF9933"/>
+    
+    <!-- Main temple body -->
+    <rect x="130" y="210" width="140" height="100" fill="url(#templeGrad)"/>
+    <rect x="130" y="210" width="140" height="100" fill="#FFF8DC" opacity="0.2"/>
+    
+    <!-- Temple pillars -->
+    <rect x="145" y="220" width="15" height="80" fill="#D2691E"/>
+    <rect x="240" y="220" width="15" height="80" fill="#D2691E"/>
+    <rect x="147" y="220" width="11" height="80" fill="#DEB887" opacity="0.6"/>
+    <rect x="242" y="220" width="11" height="80" fill="#DEB887" opacity="0.6"/>
+    
+    <!-- Central archway -->
+    <path d="M 170 300 L 170 240 Q 200 220, 230 240 L 230 300 Z" fill="#4A4A4A" opacity="0.7"/>
+    <path d="M 175 295 L 175 245 Q 200 228, 225 245 L 225 295 Z" fill="#2C2C2C" opacity="0.5"/>
+    
+    <!-- Decorative arch details -->
+    <ellipse cx="200" cy="235" rx="32" ry="18" fill="#FFD700" opacity="0.6"/>
+    
+    <!-- Temple base/platform -->
+    <rect x="120" y="310" width="160" height="12" fill="#8B4513"/>
+    <rect x="120" y="310" width="160" height="4" fill="#A0522D" opacity="0.7"/>
+  </g>
+  
+  <!-- Decorative motifs on temple -->
+  <g opacity="0.6">
+    <circle cx="150" cy="225" r="5" fill="#FFD700"/>
+    <circle cx="250" cy="225" r="5" fill="#FFD700"/>
+    <circle cx="200" cy="280" r="4" fill="#FF9933"/>
+    
+    <!-- Small bells -->
+    <path d="M 160 235 L 165 240 L 155 240 Z" fill="#FFD700"/>
+    <path d="M 240 235 L 245 240 L 235 240 Z" fill="#FFD700"/>
+  </g>
+  
+  <!-- Deity name banner -->
+  <rect x="80" y="340" width="240" height="50" rx="10" fill="#DC143C" opacity="0.9" filter="url(#shadow)"/>
+  <rect x="85" y="345" width="230" height="40" rx="8" fill="none" stroke="#FFD700" stroke-width="3"/>
+  
+  <!-- Text: Khatu Shyam Baba -->
+  <text x="200" y="368" font-family="Georgia, serif" font-size="24" fill="#FFD700" text-anchor="middle" font-weight="bold" letter-spacing="2">Khatu Shyam</text>
+  <text x="200" y="383" font-family="Georgia, serif" font-size="16" fill="#FFF8DC" text-anchor="middle" font-weight="bold">Baba</text>
+  
+  <!-- Decorative lotus petals at bottom -->
+  <g opacity="0.5">
+    <ellipse cx="120" cy="360" rx="8" ry="15" fill="#FFB6C1" transform="rotate(-30 120 360)"/>
+    <ellipse cx="140" cy="355" rx="8" ry="15" fill="#FF69B4" transform="rotate(-15 140 355)"/>
+    <ellipse cx="260" cy="355" rx="8" ry="15" fill="#FF69B4" transform="rotate(15 260 355)"/>
+    <ellipse cx="280" cy="360" rx="8" ry="15" fill="#FFB6C1" transform="rotate(30 280 360)"/>
+  </g>
+  
+  <!-- Sacred symbols around border -->
+  <g fill="#FFD700" opacity="0.5" font-family="serif" font-size="20">
+    <text x="200" y="45" text-anchor="middle">✦</text>
+    <text x="60" y="200" text-anchor="middle">✦</text>
+    <text x="340" y="200" text-anchor="middle">✦</text>
+  </g>
+  
+  <!-- Tilak marks (decorative) -->
+  <g opacity="0.7">
+    <circle cx="180" cy="260" r="3" fill="#DC143C"/>
+    <circle cx="220" cy="260" r="3" fill="#DC143C"/>
+    <circle cx="200" cy="255" r="4" fill="#FFD700"/>
+  </g>
 </svg>

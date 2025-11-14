@@ -1,36 +1,131 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
   <defs>
-    <linearGradient id="pedaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#FFF8DC;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#FFE4B5;stop-opacity:1" />
+    <linearGradient id="pedaBodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFAF0;stop-opacity:1" />
+      <stop offset="25%" style="stop-color:#FFF5E6;stop-opacity:1" />
+      <stop offset="60%" style="stop-color:#FFE8CC;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#FFDAB9;stop-opacity:1" />
     </linearGradient>
-    <filter id="pedaShadow">
-      <feDropShadow dx="2" dy="5" stdDeviation="4" flood-opacity="0.25"/>
+    
+    <radialGradient id="pedaTopGrad" cx="50%" cy="40%">
+      <stop offset="0%" style="stop-color:#FFFEF8;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#FFF8E7;stop-opacity:1" />
+      <stop offset="80%" style="stop-color:#FFEDC4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFE4B5;stop-opacity:1" />
+    </radialGradient>
+    
+    <radialGradient id="pedaIndent" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#C9A86A;stop-opacity:0.4" />
+      <stop offset="50%" style="stop-color:#DEB887;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#FFE4B5;stop-opacity:0" />
+    </radialGradient>
+    
+    <filter id="pedaShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="3" dy="15" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.4"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="gloss">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1" result="blur"/>
+      <feSpecularLighting in="blur" surfaceScale="5" specularConstant="0.5" specularExponent="10" lighting-color="white" result="spec">
+        <fePointLight x="150" y="80" z="200"/>
+      </feSpecularLighting>
+      <feComposite in="SourceGraphic" in2="spec" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"/>
     </filter>
   </defs>
   
-  <!-- Peda base - flattened cylinder -->
-  <ellipse cx="100" cy="130" rx="60" ry="15" fill="#D2B48C" opacity="0.5" filter="url(#pedaShadow)"/>
-  <ellipse cx="100" cy="100" rx="65" ry="45" fill="url(#pedaGrad)" filter="url(#pedaShadow)"/>
+  <!-- Shadow beneath peda -->
+  <ellipse cx="200" cy="320" rx="120" ry="20" fill="#000000" opacity="0.2"/>
   
-  <!-- Top surface -->
-  <ellipse cx="100" cy="90" rx="65" ry="20" fill="#FFF8DC"/>
-  <ellipse cx="100" cy="90" rx="60" ry="18" fill="#FFE4B5"/>
+  <!-- Peda base - flattened cylinder with realistic shading -->
+  <ellipse cx="200" cy="260" rx="115" ry="30" fill="#D2A679" opacity="0.5"/>
   
-  <!-- Center indentation -->
-  <ellipse cx="100" cy="90" rx="12" ry="8" fill="#DEB887"/>
+  <!-- Main body with gradient -->
+  <ellipse cx="200" cy="200" rx="125" ry="80" fill="url(#pedaBodyGrad)" filter="url(#pedaShadow)"/>
   
-  <!-- Decorative pattern lines -->
-  <path d="M 70 95 Q 100 85, 130 95" stroke="#D2B48C" stroke-width="1.5" fill="none" opacity="0.6"/>
-  <path d="M 75 105 Q 100 98, 125 105" stroke="#D2B48C" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <!-- Side highlights for 3D depth -->
+  <ellipse cx="100" cy="200" rx="15" ry="60" fill="#FFFDF5" opacity="0.3"/>
+  <ellipse cx="300" cy="200" rx="15" ry="60" fill="#E8D4A8" opacity="0.3"/>
   
-  <!-- Pistachio garnish -->
-  <ellipse cx="92" cy="88" rx="3" ry="5" fill="#90EE90" transform="rotate(-20 92 88)"/>
-  <ellipse cx="108" cy="88" rx="3" ry="5" fill="#90EE90" transform="rotate(20 108 88)"/>
+  <!-- Top surface with realistic gradient -->
+  <ellipse cx="200" cy="160" rx="125" ry="35" fill="url(#pedaTopGrad)"/>
   
-  <!-- Saffron strands -->
-  <line x1="95" y1="92" x2="97" y2="85" stroke="#FF6347" stroke-width="0.8"/>
-  <line x1="105" y1="92" x2="103" y2="85" stroke="#FF6347" stroke-width="0.8"/>
-  <line x1="100" y1="93" x2="100" y2="86" stroke="#FF6347" stroke-width="0.8"/>
+  <!-- Inner ring for depth -->
+  <ellipse cx="200" cy="158" rx="115" ry="30" fill="#FFF5E6"/>
+  
+  <!-- Milk texture - subtle grain effect -->
+  <g opacity="0.15">
+    <circle cx="150" cy="160" r="1.5" fill="#E8D4A8"/>
+    <circle cx="175" cy="155" r="1.2" fill="#E8D4A8"/>
+    <circle cx="195" cy="158" r="1.3" fill="#E8D4A8"/>
+    <circle cx="220" cy="162" r="1.4" fill="#E8D4A8"/>
+    <circle cx="245" cy="160" r="1.1" fill="#E8D4A8"/>
+    <circle cx="165" cy="175" r="1.3" fill="#E8D4A8"/>
+    <circle cx="190" cy="172" r="1.5" fill="#E8D4A8"/>
+    <circle cx="210" cy="178" r="1.2" fill="#E8D4A8"/>
+    <circle cx="235" cy="175" r="1.4" fill="#E8D4A8"/>
+  </g>
+  
+  <!-- Center indentation with realistic depth -->
+  <ellipse cx="200" cy="160" rx="22" ry="14" fill="url(#pedaIndent)"/>
+  <ellipse cx="200" cy="158" rx="18" ry="11" fill="#DEB887" opacity="0.4"/>
+  <ellipse cx="200" cy="157" rx="14" ry="8" fill="#C9A86A" opacity="0.3"/>
+  
+  <!-- Decorative pattern lines with natural curves -->
+  <g opacity="0.4" stroke="#C9A86A" stroke-width="1.5" fill="none">
+    <path d="M 110 180 Q 150 172, 200 175 Q 250 172, 290 180"/>
+    <path d="M 120 195 Q 160 188, 200 190 Q 240 188, 280 195"/>
+    <path d="M 130 210 Q 165 203, 200 205 Q 235 203, 270 210"/>
+  </g>
+  
+  <!-- Pistachio garnish - more detailed -->
+  <g filter="url(#pedaShadow)">
+    <ellipse cx="175" cy="155" rx="4.5" ry="8" fill="#98D98E" transform="rotate(-25 175 155)"/>
+    <ellipse cx="173" cy="154" rx="3" ry="6" fill="#7FCD71" transform="rotate(-25 173 154)"/>
+    <path d="M 174 152 L 174 158" stroke="#6AB85D" stroke-width="0.8"/>
+    
+    <ellipse cx="225" cy="155" rx="4.5" ry="8" fill="#98D98E" transform="rotate(25 225 155)"/>
+    <ellipse cx="227" cy="154" rx="3" ry="6" fill="#7FCD71" transform="rotate(25 227 154)"/>
+    <path d="M 226 152 L 226 158" stroke="#6AB85D" stroke-width="0.8"/>
+    
+    <ellipse cx="192" cy="150" rx="4" ry="7" fill="#98D98E" transform="rotate(-10 192 150)"/>
+    <ellipse cx="191" cy="149" rx="2.5" ry="5" fill="#7FCD71" transform="rotate(-10 191 149)"/>
+    
+    <ellipse cx="208" cy="150" rx="4" ry="7" fill="#98D98E" transform="rotate(10 208 150)"/>
+    <ellipse cx="209" cy="149" rx="2.5" ry="5" fill="#7FCD71" transform="rotate(10 209 149)"/>
+  </g>
+  
+  <!-- Saffron strands - realistic detail -->
+  <g opacity="0.9">
+    <path d="M 188 158 Q 186 150, 188 143" stroke="#E74C3C" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+    <path d="M 195 160 Q 194 152, 195 145" stroke="#E74C3C" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+    <path d="M 200 161 Q 200 153, 200 145" stroke="#DC3023" stroke-width="1.3" fill="none" stroke-linecap="round"/>
+    <path d="M 205 160 Q 206 152, 205 145" stroke="#E74C3C" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+    <path d="M 212 158 Q 214 150, 212 143" stroke="#E74C3C" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+    
+    <!-- Saffron tips -->
+    <ellipse cx="188" cy="143" rx="1.5" ry="2.5" fill="#C0392B" opacity="0.8"/>
+    <ellipse cx="200" cy="145" rx="1.5" ry="2.5" fill="#C0392B" opacity="0.8"/>
+    <ellipse cx="212" cy="143" rx="1.5" ry="2.5" fill="#C0392B" opacity="0.8"/>
+  </g>
+  
+  <!-- Ghee/milk gloss on surface -->
+  <ellipse cx="160" cy="150" rx="45" ry="20" fill="#FFFFFF" opacity="0.35" transform="rotate(-15 160 150)"/>
+  <ellipse cx="220" cy="165" rx="35" ry="18" fill="#FFFFFF" opacity="0.25" transform="rotate(20 220 165)"/>
+  
+  <!-- Subtle crease marks for texture -->
+  <g opacity="0.15" stroke="#C9A86A" stroke-width="0.8" fill="none">
+    <path d="M 140 185 Q 145 180, 150 185"/>
+    <path d="M 250 185 Q 255 180, 260 185"/>
+  </g>
+  
+  <!-- Bottom edge shadow for depth -->
+  <ellipse cx="200" cy="250" rx="120" ry="25" fill="#C9A86A" opacity="0.25"/>
 </svg>

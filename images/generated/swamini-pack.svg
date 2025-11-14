@@ -1,44 +1,141 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
   <defs>
-    <linearGradient id="boxGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="boxRedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" style="stop-color:#DC143C;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#C41E3A;stop-opacity:1" />
       <stop offset="100%" style="stop-color:#8B0000;stop-opacity:1" />
     </linearGradient>
-    <filter id="boxShadow">
-      <feDropShadow dx="3" dy="6" stdDeviation="4" flood-opacity="0.4"/>
+    
+    <linearGradient id="boxLidGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#E63946;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#DC143C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B22222;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="goldRibbonGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFE55D;stop-opacity:1" />
+      <stop offset="25%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="75%" style="stop-color:#FFA500;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8C00;stop-opacity:1" />
+    </linearGradient>
+    
+    <radialGradient id="bowGrad" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#FFE873;stop-opacity:1" />
+      <stop offset="60%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E8B923;stop-opacity:1" />
+    </radialGradient>
+    
+    <filter id="boxShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="12"/>
+      <feOffset dx="5" dy="20" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.5"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="emboss">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+      <feOffset dx="1" dy="1" result="offsetblur"/>
+      <feSpecularLighting in="offsetblur" surfaceScale="3" specularConstant="0.6" specularExponent="20" lighting-color="white" result="spec">
+        <fePointLight x="150" y="100" z="200"/>
+      </feSpecularLighting>
+      <feComposite in="SourceGraphic" in2="spec" operator="arithmetic" k1="0" k2="1" k3="0.6" k4="0"/>
     </filter>
   </defs>
   
-  <!-- Gift box base -->
-  <rect x="50" y="80" width="100" height="80" rx="5" fill="url(#boxGrad)" filter="url(#boxShadow)"/>
+  <!-- Shadow beneath box -->
+  <ellipse cx="200" cy="360" rx="140" ry="25" fill="#000000" opacity="0.25"/>
   
-  <!-- Box lid -->
-  <rect x="45" y="65" width="110" height="20" rx="5" fill="#B22222"/>
-  <rect x="45" y="65" width="110" height="8" rx="5" fill="#DC143C"/>
+  <!-- Gift box base with realistic shading -->
+  <rect x="80" y="160" width="240" height="160" rx="8" fill="url(#boxRedGrad)" filter="url(#boxShadow)"/>
   
-  <!-- Ribbon vertical -->
-  <rect x="95" y="65" width="10" height="95" fill="#FFD700"/>
-  <rect x="96" y="65" width="8" height="95" fill="#FFA500"/>
+  <!-- Side panel shading for depth -->
+  <rect x="80" y="160" width="30" height="160" fill="#8B0000" opacity="0.4"/>
+  <rect x="290" y="160" width="30" height="160" fill="#4A0000" opacity="0.3"/>
   
-  <!-- Ribbon horizontal -->
-  <rect x="45" y="115" width="110" height="10" fill="#FFD700"/>
-  <rect x="45" y="116" width="110" height="8" fill="#FFA500"/>
+  <!-- Box decorative pattern -->
+  <g opacity="0.15">
+    <circle cx="120" cy="200" r="8" fill="#FFD700"/>
+    <circle cx="280" cy="200" r="8" fill="#FFD700"/>
+    <circle cx="120" cy="280" r="8" fill="#FFD700"/>
+    <circle cx="280" cy="280" r="8" fill="#FFD700"/>
+    <path d="M 140 240 L 160 240 M 150 230 L 150 250" stroke="#FFD700" stroke-width="2"/>
+    <path d="M 240 240 L 260 240 M 250 230 L 250 250" stroke="#FFD700" stroke-width="2"/>
+  </g>
   
-  <!-- Bow -->
-  <ellipse cx="80" cy="65" rx="15" ry="10" fill="#FFD700"/>
-  <ellipse cx="120" cy="65" rx="15" ry="10" fill="#FFD700"/>
-  <circle cx="100" cy="65" r="8" fill="#FFA500"/>
+  <!-- Box lid with gradient and depth -->
+  <rect x="70" y="130" width="260" height="40" rx="8" fill="url(#boxLidGrad)" filter="url(#emboss)"/>
+  <rect x="70" y="130" width="260" height="15" rx="8" fill="#E63946" opacity="0.6"/>
   
-  <!-- Bow center knot -->
-  <circle cx="100" cy="65" r="5" fill="#FF8C00"/>
+  <!-- Lid edge highlight -->
+  <rect x="72" y="132" width="256" height="3" rx="1" fill="#FFFFFF" opacity="0.3"/>
   
-  <!-- Decorative patterns on box -->
-  <circle cx="70" cy="100" r="3" fill="#FFD700" opacity="0.6"/>
-  <circle cx="130" cy="100" r="3" fill="#FFD700" opacity="0.6"/>
-  <circle cx="70" cy="140" r="3" fill="#FFD700" opacity="0.6"/>
-  <circle cx="130" cy="140" r="3" fill="#FFD700" opacity="0.6"/>
+  <!-- Vertical ribbon with realistic fabric texture -->
+  <rect x="185" y="80" width="30" height="240" fill="url(#goldRibbonGrad)" filter="url(#emboss)"/>
+  <rect x="187" y="80" width="26" height="240" fill="#FFA500" opacity="0.4"/>
   
-  <!-- Text label area -->
-  <rect x="60" y="125" width="80" height="25" rx="3" fill="#FFF8DC" opacity="0.9"/>
-  <text x="100" y="142" font-family="Arial, sans-serif" font-size="12" fill="#8B0000" text-anchor="middle" font-weight="bold">SWAMINI</text>
+  <!-- Ribbon fold shadows -->
+  <rect x="185" y="150" width="30" height="3" fill="#CC8800" opacity="0.5"/>
+  <rect x="185" y="240" width="30" height="3" fill="#CC8800" opacity="0.5"/>
+  
+  <!-- Horizontal ribbon -->
+  <rect x="70" y="225" width="260" height="30" fill="url(#goldRibbonGrad)" filter="url(#emboss)"/>
+  <rect x="70" y="227" width="260" height="26" fill="#FFA500" opacity="0.4"/>
+  
+  <!-- Ribbon crossing detail -->
+  <rect x="185" y="225" width="30" height="30" fill="url(#goldRibbonGrad)"/>
+  <rect x="185" y="225" width="30" height="30" fill="#FF8C00" opacity="0.3"/>
+  
+  <!-- Decorative bow loops with realistic folds -->
+  <g filter="url(#emboss)">
+    <!-- Left bow loop -->
+    <ellipse cx="140" cy="120" rx="35" ry="25" fill="url(#bowGrad)"/>
+    <ellipse cx="135" cy="115" rx="30" ry="20" fill="#FFE873" opacity="0.6"/>
+    <path d="M 115 120 Q 140 110, 165 120" fill="none" stroke="#CC9900" stroke-width="2" opacity="0.4"/>
+    
+    <!-- Right bow loop -->
+    <ellipse cx="260" cy="120" rx="35" ry="25" fill="url(#bowGrad)"/>
+    <ellipse cx="265" cy="115" rx="30" ry="20" fill="#FFE873" opacity="0.6"/>
+    <path d="M 235 120 Q 260 110, 285 120" fill="none" stroke="#CC9900" stroke-width="2" opacity="0.4"/>
+    
+    <!-- Center bow knot -->
+    <circle cx="200" cy="120" r="20" fill="url(#bowGrad)"/>
+    <circle cx="200" cy="118" r="16" fill="#FFE873" opacity="0.7"/>
+    <circle cx="200" cy="120" r="12" fill="#FF8C00" opacity="0.3"/>
+    
+    <!-- Bow tails -->
+    <path d="M 200 140 Q 190 160, 180 180 L 185 185 Q 195 165, 200 145 Z" fill="url(#bowGrad)"/>
+    <path d="M 200 140 Q 210 160, 220 180 L 215 185 Q 205 165, 200 145 Z" fill="url(#bowGrad)"/>
+    
+    <!-- Bow tail tips -->
+    <ellipse cx="182" cy="182" rx="8" ry="12" fill="#FFD700" transform="rotate(-30 182 182)"/>
+    <ellipse cx="218" cy="182" rx="8" ry="12" fill="#FFD700" transform="rotate(30 218 182)"/>
+  </g>
+  
+  <!-- Label area on box -->
+  <rect x="110" y="265" width="180" height="45" rx="5" fill="#FFF8DC" opacity="0.95" filter="url(#boxShadow)"/>
+  <rect x="112" y="267" width="176" height="41" rx="4" stroke="#DC143C" stroke-width="2" fill="none"/>
+  
+  <!-- Decorative border on label -->
+  <rect x="118" y="273" width="164" height="29" rx="3" stroke="#DAA520" stroke-width="1.5" fill="none" opacity="0.6"/>
+  
+  <!-- Text "SWAMINI" with Hindi-inspired style -->
+  <text x="200" y="293" font-family="Georgia, serif" font-size="22" fill="#8B0000" text-anchor="middle" font-weight="bold" letter-spacing="2">SWAMINI</text>
+  <text x="200" y="293" font-family="Georgia, serif" font-size="22" fill="#DC143C" text-anchor="middle" font-weight="bold" letter-spacing="2" opacity="0.7">SWAMINI</text>
+  
+  <!-- Small decorative elements on label -->
+  <circle cx="125" cy="288" r="3" fill="#DAA520"/>
+  <circle cx="275" cy="288" r="3" fill="#DAA520"/>
+  
+  <!-- Premium quality seal -->
+  <circle cx="285" cy="185" r="18" fill="#FFD700" opacity="0.9"/>
+  <circle cx="285" cy="185" r="15" fill="none" stroke="#8B0000" stroke-width="1.5"/>
+  <text x="285" y="190" font-family="Arial, sans-serif" font-size="10" fill="#8B0000" text-anchor="middle" font-weight="bold">★</text>
+  
+  <!-- Box texture overlay -->
+  <rect x="80" y="160" width="240" height="160" rx="8" fill="url(#boxRedGrad)" opacity="0.1"/>
 </svg>
