@@ -1,33 +1,54 @@
-# Hitesh AMB Website
+# Amit Mishtan Bhandar - Official Website
 
-A professional portfolio website for Hitesh AMB.
+🕉️ **80 Years of Sweet Traditions in Chidawa, Rajasthan**
 
-## Repository Information
-- **Repository Name**: hitesh-amb-website
-- **Branch**: main
-- **Deployment**: Deployed directly to public_html directory
+## About
 
-## Structure
-- `index.html` - Main homepage
-- `styles.css` - Stylesheet for the website
-- `script.js` - JavaScript functionality
-- `README.md` - Project documentation
+Official website for Amit Mishtan Bhandar, the most trusted sweet shop in Chidawa, Jhunjhunu, Rajasthan. Serving devotees visiting Khatu Shyam Baba and Salasar Hanuman Ji for over 80 years.
 
 ## Features
-- Responsive design
-- Smooth scrolling navigation
-- Interactive contact form
-- Service showcase
-- Portfolio section
-- Modern animations
 
-## Deployment
-This website is configured to deploy directly from the Git repository to the public_html directory. The deployment happens automatically from the main branch.
+- **Bilingual Content** - Hindi & English
+- **SEO Optimized** - Keywords targeting Chidawa, Khatu, Salasar audiences
+- **Responsive Design** - Works perfectly on mobile and desktop
+- **WhatsApp Integration** - Direct ordering via WhatsApp
+- **Product Showcase** - Famous Peda, Ladoo, and traditional sweets
+- **Online Order Form** - Easy ordering system
+- **Religious Touch** - Dedicated sections for Khatu Shyam and Salasar Hanuman devotees
+
+## Products Featured
+
+- Chidawa Famous Peda
+- Boondi Ladoo
+- Motichoor Ladoo
+- Besan Ladoo
+- Milk Cake
+- Ghewar & Feeni
+
+## Contact Details
+
+- **Phone**: +91 96940 18427, +91 63756 35635
+- **WhatsApp**: +91 96940 18427
+- **Location**: Main Bazaar, Chidawa, Jhunjhunu, Rajasthan
+
+## SEO Keywords
+
+Amit Mishtan Bhandar, Chidawa sweets, Peda Chidawa, Ladoo Rajasthan, Khatu Shyam Prasad, Salasar Hanuman Prasad, traditional Rajasthani sweets, Jhunjhunu sweets
 
 ## Technologies Used
-- HTML5
-- CSS3
-- JavaScript (Vanilla)
 
-## License
-© 2025 Hitesh AMB. All rights reserved.
+- HTML5
+- CSS3 (with Google Fonts for Hindi support)
+- JavaScript (Vanilla)
+- Responsive Grid Layout
+- WhatsApp Business API Integration
+
+## Deployment
+
+Configured for direct deployment from GitHub to public_html directory.
+
+---
+
+🙏 **Jai Khatu Shyam Baba | Jai Salasar Balaji** 🙏
+
+© 2025 Amit Mishtan Bhandar. All rights reserved.
