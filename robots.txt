@@ -1,0 +1,26 @@
+# robots.txt for Amit Mishtan Bhandar
+# Traditional Laddu, Peda, Swamini, and Prasad shop in Chidava (Chirawa), Jhunjhunu, Rajasthan
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://www.amitmisthan.com/sitemap.xml
+
+# Allow search engines to index all pages
+Allow: /index.html
+Allow: /about.html
+Allow: /menu.html
+Allow: /gallery.html
+Allow: /order.html
+Allow: /contact.html
+
+# Allow indexing of images
+Allow: /images/
+
+# Allow CSS and JavaScript for better rendering
+Allow: /css/
+Allow: /js/
+
+# Crawl-delay (optional, can be adjusted)
+Crawl-delay: 1

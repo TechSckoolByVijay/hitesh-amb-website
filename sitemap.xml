@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Home Page -->
+  <url>
+    <loc>https://www.amitmisthan.com/</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.amitmisthan.com/images/generated/laddu.svg</image:loc>
+      <image:title>Laddu - Amit Mishtan Bhandar Chidava</image:title>
+    </image:image>
+  </url>
+  
+  <!-- About Page -->
+  <url>
+    <loc>https://www.amitmisthan.com/about.html</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Menu Page -->
+  <url>
+    <loc>https://www.amitmisthan.com/menu.html</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.amitmisthan.com/images/generated/laddu.svg</image:loc>
+      <image:title>Laddu varieties - Chidava sweets</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.amitmisthan.com/images/generated/peda.svg</image:loc>
+      <image:title>Peda varieties - Traditional Rajasthan</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.amitmisthan.com/images/generated/swamini-pack.svg</image:loc>
+      <image:title>Swamini Pack - Gift box assorted sweets</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.amitmisthan.com/images/generated/prasad-plate.svg</image:loc>
+      <image:title>Prasad items - Temple offerings</image:title>
+    </image:image>
+  </url>
+  
+  <!-- Gallery Page -->
+  <url>
+    <loc>https://www.amitmisthan.com/gallery.html</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Order Page -->
+  <url>
+    <loc>https://www.amitmisthan.com/order.html</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Contact Page -->
+  <url>
+    <loc>https://www.amitmisthan.com/contact.html</loc>
+    <lastmod>2025-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <radialGradient id="ladduGrad" cx="50%" cy="40%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFA500;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FF8C00;stop-opacity:1" />
+    </radialGradient>
+    <filter id="shadow">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Main Laddu sphere -->
+  <circle cx="100" cy="100" r="70" fill="url(#ladduGrad)" filter="url(#shadow)"/>
+  
+  <!-- Texture dots on laddu -->
+  <circle cx="80" cy="80" r="3" fill="#FFE55C" opacity="0.8"/>
+  <circle cx="95" cy="75" r="2.5" fill="#FFE55C" opacity="0.7"/>
+  <circle cx="110" cy="78" r="3" fill="#FFE55C" opacity="0.8"/>
+  <circle cx="120" cy="90" r="2" fill="#FFE55C" opacity="0.6"/>
+  <circle cx="85" cy="95" r="2.5" fill="#FFE55C" opacity="0.7"/>
+  <circle cx="115" cy="105" r="3" fill="#FFE55C" opacity="0.8"/>
+  <circle cx="90" cy="110" r="2" fill="#FFE55C" opacity="0.6"/>
+  <circle cx="105" cy="115" r="2.5" fill="#FFE55C" opacity="0.7"/>
+  <circle cx="75" cy="105" r="2" fill="#FFE55C" opacity="0.6"/>
+  <circle cx="125" cy="100" r="2.5" fill="#FFE55C" opacity="0.7"/>
+  
+  <!-- Highlight -->
+  <ellipse cx="85" cy="75" rx="25" ry="15" fill="#FFF8DC" opacity="0.4"/>
+  
+  <!-- Decorative cashew pieces -->
+  <path d="M 95 90 Q 98 88, 100 90 Q 98 92, 95 90" fill="#F5DEB3"/>
+  <path d="M 105 95 Q 108 93, 110 95 Q 108 97, 105 95" fill="#F5DEB3"/>
+  <path d="M 88 105 Q 91 103, 93 105 Q 91 107, 88 105" fill="#F5DEB3"/>
+</svg>

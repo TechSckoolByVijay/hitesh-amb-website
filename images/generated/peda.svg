@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="pedaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFF8DC;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#FFE4B5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFDAB9;stop-opacity:1" />
+    </linearGradient>
+    <filter id="pedaShadow">
+      <feDropShadow dx="2" dy="5" stdDeviation="4" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  
+  <!-- Peda base - flattened cylinder -->
+  <ellipse cx="100" cy="130" rx="60" ry="15" fill="#D2B48C" opacity="0.5" filter="url(#pedaShadow)"/>
+  <ellipse cx="100" cy="100" rx="65" ry="45" fill="url(#pedaGrad)" filter="url(#pedaShadow)"/>
+  
+  <!-- Top surface -->
+  <ellipse cx="100" cy="90" rx="65" ry="20" fill="#FFF8DC"/>
+  <ellipse cx="100" cy="90" rx="60" ry="18" fill="#FFE4B5"/>
+  
+  <!-- Center indentation -->
+  <ellipse cx="100" cy="90" rx="12" ry="8" fill="#DEB887"/>
+  
+  <!-- Decorative pattern lines -->
+  <path d="M 70 95 Q 100 85, 130 95" stroke="#D2B48C" stroke-width="1.5" fill="none" opacity="0.6"/>
+  <path d="M 75 105 Q 100 98, 125 105" stroke="#D2B48C" stroke-width="1.5" fill="none" opacity="0.6"/>
+  
+  <!-- Pistachio garnish -->
+  <ellipse cx="92" cy="88" rx="3" ry="5" fill="#90EE90" transform="rotate(-20 92 88)"/>
+  <ellipse cx="108" cy="88" rx="3" ry="5" fill="#90EE90" transform="rotate(20 108 88)"/>
+  
+  <!-- Saffron strands -->
+  <line x1="95" y1="92" x2="97" y2="85" stroke="#FF6347" stroke-width="0.8"/>
+  <line x1="105" y1="92" x2="103" y2="85" stroke="#FF6347" stroke-width="0.8"/>
+  <line x1="100" y1="93" x2="100" y2="86" stroke="#FF6347" stroke-width="0.8"/>
+</svg>
