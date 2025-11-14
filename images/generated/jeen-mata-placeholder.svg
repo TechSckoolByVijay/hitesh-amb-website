@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="95" fill="#FFF8DC" stroke="#FF9933" stroke-width="3"/>
+  
+  <!-- Inner Circle -->
+  <circle cx="100" cy="100" r="80" fill="#FFBF00" opacity="0.3"/>
+  
+  <!-- Temple/Crown Symbol -->
+  <path d="M 100 40 L 110 50 L 120 45 L 130 55 L 125 65 L 75 65 L 70 55 L 80 45 L 90 50 Z" 
+        fill="#DC143C" stroke="#8B0000" stroke-width="2"/>
+  
+  <!-- Goddess Symbol (Simplified Deity representation) -->
+  <circle cx="100" cy="90" r="20" fill="#FFD700" stroke="#FF9933" stroke-width="2"/>
+  
+  <!-- Arms/Hands -->
+  <path d="M 75 90 Q 60 85 55 95" stroke="#DC143C" stroke-width="3" fill="none"/>
+  <path d="M 125 90 Q 140 85 145 95" stroke="#DC143C" stroke-width="3" fill="none"/>
+  
+  <!-- Body/Dress -->
+  <path d="M 85 105 L 80 140 L 90 145 L 100 150 L 110 145 L 120 140 L 115 105 Z" 
+        fill="#FF9933" stroke="#DC143C" stroke-width="2"/>
+  
+  <!-- Decorative Patterns -->
+  <circle cx="100" cy="120" r="3" fill="#FFD700"/>
+  <circle cx="95" cy="130" r="2" fill="#FFD700"/>
+  <circle cx="105" cy="130" r="2" fill="#FFD700"/>
+  
+  <!-- Om Symbol (Simplified) -->
+  <text x="100" y="175" font-family="Arial, sans-serif" font-size="24" 
+        fill="#8B0000" text-anchor="middle" font-weight="bold">ॐ</text>
+  
+  <!-- Blessing Text -->
+  <text x="100" y="195" font-family="Arial, sans-serif" font-size="10" 
+        fill="#DC143C" text-anchor="middle" font-weight="600">Jeen Mata</text>
+</svg>
