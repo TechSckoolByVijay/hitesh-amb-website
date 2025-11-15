@@ -441,6 +441,7 @@
   // Initialize All Functions on DOM Ready
   // ==========================================
   function init() {
+    initThemeToggle();
     initImageSlider();
     initMobileMenu();
     initSmoothScroll();
@@ -457,6 +458,34 @@
     document.addEventListener('DOMContentLoaded', init);
   } else {
     init();
+  }
+
+  // ==========================================
+  // Theme Toggle (Dark/Light Mode)
+  // ==========================================
+  function initThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    if (!themeToggle) return;
+
+    // Check for saved theme preference or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    
+    // Apply saved theme on page load
+    if (currentTheme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeToggle.checked = true;
+    }
+
+    // Listen for theme toggle
+    themeToggle.addEventListener('change', function() {
+      if (this.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      }
+    });
   }
 
   // ==========================================
