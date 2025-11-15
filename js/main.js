@@ -57,8 +57,11 @@
         const results = await Promise.all(imagePromises);
         const foundImages = results.filter(img => img !== null);
         
-        if (foundImages.length > 0) {
-          sliderImages.push(...foundImages);
+        // Remove duplicates (in case same image exists in multiple formats)
+        const uniqueImages = [...new Set(foundImages)];
+        
+        if (uniqueImages.length > 0) {
+          sliderImages.push(...uniqueImages);
           initSlider();
         } else {
           console.log('No slider images found');
