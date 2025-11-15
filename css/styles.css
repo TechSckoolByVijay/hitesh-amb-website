@@ -47,9 +47,9 @@
 /* Theme Toggle Switch */
 .theme-toggle-container {
   position: fixed;
-  top: 80px;
+  top: 120px;
   right: 20px;
-  z-index: 999;
+  z-index: 1001;
   background: var(--card-bg);
   border-radius: 50px;
   padding: 8px 12px;
