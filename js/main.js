@@ -175,7 +175,7 @@
 
     function startAutoPlay() {
       stopAutoPlay();
-      slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+      slideInterval = setInterval(nextSlide, 3000); // Change slide every 3 seconds
     }
 
     function stopAutoPlay() {
