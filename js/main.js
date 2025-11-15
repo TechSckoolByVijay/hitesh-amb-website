@@ -6,6 +6,186 @@
   'use strict';
 
   // ==========================================
+  // Dynamic Image Slider
+  // ==========================================
+  function initImageSlider() {
+    const sliderContainer = document.querySelector('.image-slider');
+    if (!sliderContainer) return;
+
+    const sliderWrapper = sliderContainer.querySelector('.slider-wrapper');
+    const sliderTrack = sliderContainer.querySelector('.slider-track');
+    const prevBtn = sliderContainer.querySelector('.slider-prev');
+    const nextBtn = sliderContainer.querySelector('.slider-next');
+    const dotsContainer = sliderContainer.querySelector('.slider-dots');
+
+    // Dynamically load all images from slider folder
+    const sliderImages = [];
+    let currentSlide = 0;
+    let slideInterval;
+
+    // Fetch images from the slider directory
+    async function loadSliderImages() {
+      try {
+        // Get all files in the slider directory
+        const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp'];
+        const sliderPath = 'images/slider/';
+        
+        // Try to load common image files
+        // Since we can't directly list directory contents in browser,
+        // we'll try to load images with common naming patterns
+        const imagePromises = [];
+        
+        // Try numbered slides (slide1, slide2, etc.) up to 20
+        for (let i = 1; i <= 20; i++) {
+          for (const ext of imageExtensions) {
+            imagePromises.push(
+              checkImageExists(`${sliderPath}slide${i}.${ext}`)
+            );
+          }
+        }
+        
+        // Try other common patterns
+        const commonNames = ['banner1', 'banner2', 'banner3', 'image1', 'image2', 'image3'];
+        for (const name of commonNames) {
+          for (const ext of imageExtensions) {
+            imagePromises.push(
+              checkImageExists(`${sliderPath}${name}.${ext}`)
+            );
+          }
+        }
+
+        const results = await Promise.all(imagePromises);
+        const foundImages = results.filter(img => img !== null);
+        
+        if (foundImages.length > 0) {
+          sliderImages.push(...foundImages);
+          initSlider();
+        } else {
+          console.log('No slider images found');
+        }
+      } catch (error) {
+        console.error('Error loading slider images:', error);
+      }
+    }
+
+    // Check if image exists
+    function checkImageExists(imagePath) {
+      return new Promise((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve(imagePath);
+        img.onerror = () => resolve(null);
+        img.src = imagePath;
+      });
+    }
+
+    // Initialize slider with loaded images
+    function initSlider() {
+      if (sliderImages.length === 0) return;
+
+      // Create slides
+      sliderImages.forEach((imageSrc, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'slider-slide';
+        
+        const img = document.createElement('img');
+        img.src = imageSrc;
+        img.alt = `Slide ${index + 1}`;
+        img.loading = 'lazy';
+        
+        slide.appendChild(img);
+        sliderTrack.appendChild(slide);
+
+        // Create dot indicator
+        const dot = document.createElement('button');
+        dot.className = 'slider-dot';
+        dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+        dot.addEventListener('click', () => goToSlide(index));
+        dotsContainer.appendChild(dot);
+      });
+
+      // Set initial active states
+      updateSlider();
+
+      // Event listeners
+      prevBtn?.addEventListener('click', prevSlide);
+      nextBtn?.addEventListener('click', nextSlide);
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') prevSlide();
+        if (e.key === 'ArrowRight') nextSlide();
+      });
+
+      // Auto-play
+      startAutoPlay();
+
+      // Pause on hover
+      sliderWrapper.addEventListener('mouseenter', stopAutoPlay);
+      sliderWrapper.addEventListener('mouseleave', startAutoPlay);
+
+      // Touch swipe support
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      sliderWrapper.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+
+      sliderWrapper.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      });
+
+      function handleSwipe() {
+        if (touchEndX < touchStartX - 50) nextSlide();
+        if (touchEndX > touchStartX + 50) prevSlide();
+      }
+    }
+
+    function updateSlider() {
+      const slides = sliderTrack.querySelectorAll('.slider-slide');
+      const dots = dotsContainer.querySelectorAll('.slider-dot');
+
+      slides.forEach((slide, index) => {
+        slide.style.transform = `translateX(-${currentSlide * 100}%)`;
+      });
+
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+      });
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % sliderImages.length;
+      updateSlider();
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + sliderImages.length) % sliderImages.length;
+      updateSlider();
+    }
+
+    function goToSlide(index) {
+      currentSlide = index;
+      updateSlider();
+    }
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    }
+
+    function stopAutoPlay() {
+      if (slideInterval) {
+        clearInterval(slideInterval);
+      }
+    }
+
+    // Load images and start slider
+    loadSliderImages();
+  }
+
+  // ==========================================
   // Mobile Menu Toggle
   // ==========================================
   function initMobileMenu() {
@@ -258,6 +438,7 @@
   // Initialize All Functions on DOM Ready
   // ==========================================
   function init() {
+    initImageSlider();
     initMobileMenu();
     initSmoothScroll();
     initWhatsAppOrdering();

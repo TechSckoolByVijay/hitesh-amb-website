@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="1200" height="500">
+  <!-- Background -->
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF9933;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFBF00;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="1200" height="500" fill="url(#bg1)"/>
+  
+  <!-- Decorative Pattern -->
+  <circle cx="100" cy="100" r="80" fill="#FFD700" opacity="0.2"/>
+  <circle cx="1100" cy="400" r="100" fill="#FF8C00" opacity="0.2"/>
+  
+  <!-- Main Text -->
+  <text x="600" y="180" font-family="Arial, sans-serif" font-size="72" 
+        fill="white" text-anchor="middle" font-weight="bold">
+    🙏 Welcome to 🙏
+  </text>
+  
+  <text x="600" y="260" font-family="Arial, sans-serif" font-size="56" 
+        fill="#8B0000" text-anchor="middle" font-weight="bold">
+    Amit Misthan Bhandar
+  </text>
+  
+  <text x="600" y="320" font-family="Arial, sans-serif" font-size="36" 
+        fill="white" text-anchor="middle">
+    80 Years of Traditional Sweets
+  </text>
+  
+  <text x="600" y="380" font-family="Arial, sans-serif" font-size="32" 
+        fill="#FFF8DC" text-anchor="middle" font-style="italic">
+    Chirawa, Jhunjhunu, Rajasthan
+  </text>
+  
+  <!-- Decorative Elements -->
+  <path d="M 400 450 Q 600 420 800 450" stroke="white" stroke-width="3" fill="none" opacity="0.5"/>
+</svg>
