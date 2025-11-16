@@ -197,30 +197,56 @@
     const navLinks = document.querySelectorAll('nav ul li a');
 
     if (menuToggle && nav) {
-      menuToggle.addEventListener('click', function() {
-        nav.classList.toggle('active');
-        const isActive = nav.classList.contains('active');
+      // Create overlay element
+      const overlay = document.createElement('div');
+      overlay.className = 'mobile-menu-overlay';
+      document.body.appendChild(overlay);
+
+      // Toggle menu on button click
+      menuToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isActive = nav.classList.toggle('active');
         menuToggle.setAttribute('aria-expanded', isActive);
         menuToggle.textContent = isActive ? '✕' : '☰';
+        overlay.classList.toggle('active', isActive);
+        
+        // Prevent body scroll when menu is open
+        document.body.style.overflow = isActive ? 'hidden' : '';
       });
 
       // Close menu when clicking a link
       navLinks.forEach(link => {
         link.addEventListener('click', function() {
-          nav.classList.remove('active');
-          menuToggle.setAttribute('aria-expanded', 'false');
-          menuToggle.textContent = '☰';
+          closeMenu();
         });
       });
 
-      // Close menu when clicking outside
-      document.addEventListener('click', function(event) {
-        if (!nav.contains(event.target) && !menuToggle.contains(event.target)) {
-          nav.classList.remove('active');
-          menuToggle.setAttribute('aria-expanded', 'false');
-          menuToggle.textContent = '☰';
+      // Close menu when clicking the overlay
+      overlay.addEventListener('click', function() {
+        closeMenu();
+      });
+
+      // Close menu on escape key
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && nav.classList.contains('active')) {
+          closeMenu();
         }
       });
+
+      // Handle window resize - close menu if resized to desktop
+      window.addEventListener('resize', debounce(function() {
+        if (window.innerWidth > 768 && nav.classList.contains('active')) {
+          closeMenu();
+        }
+      }, 250));
+
+      function closeMenu() {
+        nav.classList.remove('active');
+        overlay.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.textContent = '☰';
+        document.body.style.overflow = '';
+      }
     }
   }
 
@@ -495,6 +521,7 @@
     initFormValidation();
     initContactForm();
     initImageZoom();
+    initMobileTouchOptimizations();
   }
 
   // Wait for DOM to be fully loaded
@@ -637,7 +664,7 @@
   // ==========================================
   
   // Debounce function for performance
-  window.debounce = function(func, wait) {
+  function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
       const later = () => {
@@ -647,6 +674,47 @@
       clearTimeout(timeout);
       timeout = setTimeout(later, wait);
     };
-  };
+  }
+
+  // Expose debounce to window for external use if needed
+  window.debounce = debounce;
+
+  // ==========================================
+  // Mobile Touch Optimizations
+  // ==========================================
+  function initMobileTouchOptimizations() {
+    // Improve tap responsiveness on mobile
+    if ('ontouchstart' in window) {
+      document.body.classList.add('touch-device');
+      
+      // Add active state for better touch feedback
+      const interactiveElements = document.querySelectorAll('button, a, .btn, .menu-item, .product-card');
+      
+      interactiveElements.forEach(element => {
+        element.addEventListener('touchstart', function() {
+          this.classList.add('touch-active');
+        }, { passive: true });
+        
+        element.addEventListener('touchend', function() {
+          setTimeout(() => {
+            this.classList.remove('touch-active');
+          }, 150);
+        }, { passive: true });
+        
+        element.addEventListener('touchcancel', function() {
+          this.classList.remove('touch-active');
+        }, { passive: true });
+      });
+    }
+    
+    // Prevent zoom on double tap for specific elements
+    const preventZoomElements = document.querySelectorAll('.btn, button, a');
+    preventZoomElements.forEach(element => {
+      element.addEventListener('touchend', function(e) {
+        e.preventDefault();
+        e.target.click();
+      }, { passive: false });
+    });
+  }
 
 })();
