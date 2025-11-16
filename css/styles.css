@@ -44,7 +44,142 @@
   --header-gradient-end: #A0522D;
 }
 
-/* Theme Toggle Switch */
+/* Spirituality Theme */
+[data-theme="spiritual"] {
+  --primary-saffron: #D84315;
+  --secondary-amber: #F57C00;
+  --cream: #FFF9E6;
+  --warm-orange: #FF6D00;
+  --deep-red: #BF360C;
+  --gold: #FF8F00;
+  --text-dark: #4E342E;
+  --text-light: #6D4C41;
+  --bg-light: #FFF3E0;
+  --bg-white: rgba(255, 255, 255, 0.92);
+  --shadow: rgba(191, 54, 12, 0.15);
+  --whatsapp-green: #2E7D32;
+  --border-color: #FF8F00;
+  --card-bg: rgba(255, 255, 255, 0.88);
+  --header-gradient-start: #D84315;
+  --header-gradient-end: #F57C00;
+}
+
+/* Spiritual Background Pattern */
+[data-theme="spiritual"] body {
+  background-image: url('../images/theme/spritual/background.png');
+  background-repeat: repeat;
+  background-size: 600px auto;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+[data-theme="spiritual"] body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 243, 224, 0.5);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Enhanced spiritual theme cards */
+[data-theme="spiritual"] .menu-item,
+[data-theme="spiritual"] .product-card,
+[data-theme="spiritual"] .blessing-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border: 2px solid #FF8F00;
+  box-shadow: 0 6px 20px rgba(191, 54, 12, 0.2);
+}
+
+[data-theme="spiritual"] .section-title {
+  color: #BF360C;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="spiritual"] .btn-primary {
+  background: linear-gradient(135deg, #D84315, #F57C00);
+  box-shadow: 0 4px 15px rgba(216, 67, 21, 0.4);
+}
+
+[data-theme="spiritual"] .btn-secondary {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: #D84315;
+  color: #D84315;
+}
+
+[data-theme="spiritual"] header {
+  background: linear-gradient(135deg, rgba(216, 67, 21, 0.95), rgba(245, 124, 0, 0.95));
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="spiritual"] .top-bar {
+  background: linear-gradient(90deg, #BF360C, #D84315, #BF360C);
+}
+
+/* Additional Spiritual Theme Enhancements */
+[data-theme="spiritual"] .container {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(5px);
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 2rem auto;
+}
+
+[data-theme="spiritual"] h1,
+[data-theme="spiritual"] h2,
+[data-theme="spiritual"] h3,
+[data-theme="spiritual"] h4 {
+  color: #BF360C;
+  text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="spiritual"] p,
+[data-theme="spiritual"] .text-dark {
+  color: #4E342E;
+}
+
+[data-theme="spiritual"] nav ul li a {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="spiritual"] .whatsapp-float {
+  background: #2E7D32;
+  box-shadow: 0 6px 24px rgba(46, 125, 50, 0.4);
+}
+
+[data-theme="spiritual"] footer {
+  background: linear-gradient(135deg, rgba(216, 67, 21, 0.9), rgba(245, 124, 0, 0.9));
+  backdrop-filter: blur(10px);
+}
+
+[data-theme="spiritual"] .hero {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  padding: 2rem;
+  margin: 2rem 0;
+}
+
+[data-theme="spiritual"] input,
+[data-theme="spiritual"] textarea,
+[data-theme="spiritual"] select {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid #FF8F00;
+  color: #4E342E;
+}
+
+[data-theme="spiritual"] input:focus,
+[data-theme="spiritual"] textarea:focus,
+[data-theme="spiritual"] select:focus {
+  border-color: #D84315;
+  box-shadow: 0 0 10px rgba(216, 67, 21, 0.3);
+}
+
+/* Theme Toggle Switch - 3 Options */
 .theme-toggle-container {
   position: fixed;
   top: 120px;
@@ -52,11 +187,11 @@
   z-index: 1001;
   background: var(--card-bg);
   border-radius: 50px;
-  padding: 8px 12px;
+  padding: 10px 15px;
   box-shadow: 0 4px 12px var(--shadow);
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   border: 2px solid var(--border-color);
   transition: all 0.3s ease;
 }
@@ -65,55 +200,76 @@
   box-shadow: 0 6px 16px var(--shadow);
 }
 
-.theme-icon {
-  font-size: 1.2rem;
-  line-height: 1;
-}
-
-.theme-switch {
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 26px;
-}
-
-.theme-switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.theme-slider {
-  position: absolute;
+.theme-option {
   cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, var(--secondary-amber), var(--primary-saffron));
-  transition: 0.4s;
-  border-radius: 26px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  background: transparent;
 }
 
-.theme-slider:before {
-  position: absolute;
-  content: "";
-  height: 18px;
-  width: 18px;
-  left: 4px;
-  bottom: 4px;
-  background-color: var(--bg-white);
-  transition: 0.4s;
-  border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+.theme-option:hover {
+  transform: scale(1.1);
 }
 
-input:checked + .theme-slider {
-  background: linear-gradient(135deg, #4A4A4A, #2C2C2C);
+.theme-option.active {
+  background: linear-gradient(135deg, var(--primary-saffron), var(--secondary-amber));
+  border-color: var(--gold);
+  box-shadow: 0 2px 8px rgba(255, 153, 51, 0.4);
 }
 
-input:checked + .theme-slider:before {
-  transform: translateX(24px);
+.theme-divider {
+  width: 2px;
+  height: 24px;
+  background: var(--border-color);
+  opacity: 0.5;
+}
+
+/* Background Music Player */
+.music-player {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1001;
+  background: var(--card-bg);
+  border-radius: 50px;
+  padding: 10px 15px;
+  box-shadow: 0 4px 12px var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 2px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.music-player:hover {
+  box-shadow: 0 6px 16px var(--shadow);
+}
+
+.music-control {
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+  padding: 5px;
+}
+
+.music-control:hover {
+  transform: scale(1.2);
+}
+
+.music-title {
+  font-size: 0.85rem;
+  color: var(--text-dark);
+  max-width: 150px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.volume-control {
+  width: 80px;
 }
 
 /* Reset and Base Styles */

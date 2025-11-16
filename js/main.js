@@ -461,31 +461,125 @@
   }
 
   // ==========================================
-  // Theme Toggle (Dark/Light Mode)
+  // Theme Toggle (Light/Dark/Spiritual Mode)
   // ==========================================
   function initThemeToggle() {
-    const themeToggle = document.getElementById('theme-toggle');
-    if (!themeToggle) return;
+    const themeOptions = document.querySelectorAll('.theme-option');
+    if (themeOptions.length === 0) return;
 
     // Check for saved theme preference or default to light mode
     const currentTheme = localStorage.getItem('theme') || 'light';
     
     // Apply saved theme on page load
-    if (currentTheme === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      themeToggle.checked = true;
-    }
-
-    // Listen for theme toggle
-    themeToggle.addEventListener('change', function() {
-      if (this.checked) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    
+    // Set active state on correct option
+    themeOptions.forEach(option => {
+      if (option.dataset.theme === currentTheme) {
+        option.classList.add('active');
       } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
+        option.classList.remove('active');
       }
     });
+
+    // Listen for theme changes
+    themeOptions.forEach(option => {
+      option.addEventListener('click', function() {
+        const selectedTheme = this.dataset.theme;
+        
+        // Update active state
+        themeOptions.forEach(opt => opt.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Apply theme
+        document.documentElement.setAttribute('data-theme', selectedTheme);
+        localStorage.setItem('theme', selectedTheme);
+        
+        // Show/hide music player based on spiritual theme
+        const musicPlayer = document.getElementById('music-player');
+        if (musicPlayer) {
+          if (selectedTheme === 'spiritual') {
+            musicPlayer.style.display = 'flex';
+            initMusicPlayer();
+          } else {
+            musicPlayer.style.display = 'none';
+            pauseMusic();
+          }
+        }
+      });
+    });
+    
+    // Auto-show music player if spiritual theme is active
+    if (currentTheme === 'spiritual') {
+      const musicPlayer = document.getElementById('music-player');
+      if (musicPlayer) {
+        musicPlayer.style.display = 'flex';
+        initMusicPlayer();
+      }
+    }
+  }
+
+  // ==========================================
+  // Background Music Player
+  // ==========================================
+  function initMusicPlayer() {
+    const audio = document.getElementById('bg-music');
+    const playPauseBtn = document.getElementById('play-pause');
+    const volumeControl = document.getElementById('volume');
+    
+    if (!audio || !playPauseBtn || !volumeControl) return;
+
+    // Set initial volume
+    audio.volume = volumeControl.value / 100;
+
+    // Auto-play music (with user interaction required by browsers)
+    const playMusic = () => {
+      audio.play().catch(err => {
+        console.log('Auto-play prevented. User interaction required.');
+      });
+    };
+
+    // Play on first user interaction
+    const startMusicOnInteraction = () => {
+      playMusic();
+      document.removeEventListener('click', startMusicOnInteraction);
+      document.removeEventListener('touchstart', startMusicOnInteraction);
+    };
+    
+    document.addEventListener('click', startMusicOnInteraction, { once: true });
+    document.addEventListener('touchstart', startMusicOnInteraction, { once: true });
+
+    // Play/Pause control
+    playPauseBtn.addEventListener('click', function() {
+      if (audio.paused) {
+        audio.play();
+        this.textContent = '⏸️';
+      } else {
+        audio.pause();
+        this.textContent = '▶️';
+      }
+    });
+
+    // Volume control
+    volumeControl.addEventListener('input', function() {
+      audio.volume = this.value / 100;
+    });
+
+    // Update play/pause button when audio state changes
+    audio.addEventListener('play', () => {
+      playPauseBtn.textContent = '⏸️';
+    });
+
+    audio.addEventListener('pause', () => {
+      playPauseBtn.textContent = '▶️';
+    });
+  }
+
+  function pauseMusic() {
+    const audio = document.getElementById('bg-music');
+    if (audio) {
+      audio.pause();
+    }
   }
 
   // ==========================================

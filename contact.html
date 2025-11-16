@@ -77,12 +77,21 @@
   
   <!-- Theme Toggle Switch -->
   <div class="theme-toggle-container">
-    <span class="theme-icon">☀️</span>
-    <label class="theme-switch">
-      <input type="checkbox" id="theme-toggle" aria-label="Toggle dark mode">
-      <span class="theme-slider"></span>
-    </label>
-    <span class="theme-icon">🌙</span>
+    <div class="theme-option active" data-theme="light" title="Light Theme">☀️</div>
+    <div class="theme-divider"></div>
+    <div class="theme-option" data-theme="dark" title="Dark Theme">🌙</div>
+    <div class="theme-divider"></div>
+    <div class="theme-option" data-theme="spiritual" title="Spiritual Theme">🕉️</div>
+  </div>
+
+  <!-- Background Music Player -->
+  <div class="music-player" style="display: none;" id="music-player">
+    <div class="music-control" id="play-pause">▶️</div>
+    <div class="music-title" id="music-title">Jai Shree Shyam</div>
+    <input type="range" class="volume-control" id="volume" min="0" max="100" value="50">
+    <audio id="bg-music" loop>
+      <source src="audio/jai-shree-shyam.mp3" type="audio/mpeg">
+    </audio>
   </div>
 
   <!-- Top Bar with Ram Ram -->
