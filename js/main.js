@@ -438,6 +438,49 @@
   }
 
   // ==========================================
+  // Image Zoom for Menu Products
+  // ==========================================
+  function initImageZoom() {
+    // Create zoom overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'image-zoom-overlay';
+    overlay.innerHTML = '<span class="zoom-close">&times;</span><img src="" alt="Zoomed product">';
+    document.body.appendChild(overlay);
+
+    const zoomedImg = overlay.querySelector('img');
+    const closeBtn = overlay.querySelector('.zoom-close');
+
+    // Add click handlers to all menu item images
+    const menuImages = document.querySelectorAll('.menu-item-image img');
+    
+    menuImages.forEach(img => {
+      img.parentElement.addEventListener('click', function(e) {
+        e.preventDefault();
+        zoomedImg.src = img.src;
+        zoomedImg.alt = img.alt;
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    // Close zoom on overlay click or close button
+    overlay.addEventListener('click', function(e) {
+      if (e.target === overlay || e.target === closeBtn) {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && overlay.classList.contains('active')) {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  }
+
+  // ==========================================
   // Initialize All Functions on DOM Ready
   // ==========================================
   function init() {
@@ -451,6 +494,7 @@
     initScrollAnimations();
     initFormValidation();
     initContactForm();
+    initImageZoom();
   }
 
   // Wait for DOM to be fully loaded
