@@ -464,26 +464,48 @@
   }
 
   // ==========================================
-  // Image Zoom for Menu Products
+  // Image Zoom for All Images (Menu, Gallery, About, Home)
   // ==========================================
   function initImageZoom() {
     // Create zoom overlay
     const overlay = document.createElement('div');
     overlay.className = 'image-zoom-overlay';
-    overlay.innerHTML = '<span class="zoom-close">&times;</span><img src="" alt="Zoomed product">';
+    overlay.innerHTML = '<span class="zoom-close">&times;</span><img src="" alt="Zoomed image">';
     document.body.appendChild(overlay);
 
     const zoomedImg = overlay.querySelector('img');
     const closeBtn = overlay.querySelector('.zoom-close');
 
-    // Add click handlers to all menu item images
-    const menuImages = document.querySelectorAll('.menu-item-image img');
+    // Select all zoomable images from different sections
+    const zoomableSelectors = [
+      '.menu-item-image img',           // Menu page product images
+      '.product-image img',             // Product cards
+      '.gallery-item img',              // Gallery images
+      '.hero-image img',                // Hero section images (home)
+      '.blessing-card img',             // Blessing cards
+      '.about-content img',             // About page images
+      '.product-card img'               // Product cards on home page
+    ];
+
+    // Combine all selectors and get images
+    const allImages = document.querySelectorAll(zoomableSelectors.join(', '));
     
-    menuImages.forEach(img => {
-      img.parentElement.addEventListener('click', function(e) {
+    allImages.forEach(img => {
+      // Add cursor pointer style to indicate clickable
+      img.style.cursor = 'zoom-in';
+      
+      // Make parent clickable if it's a container
+      const clickTarget = img.parentElement.classList.contains('menu-item-image') || 
+                         img.parentElement.classList.contains('product-image') ||
+                         img.parentElement.classList.contains('gallery-item') ||
+                         img.parentElement.classList.contains('hero-image')
+                         ? img.parentElement : img;
+      
+      clickTarget.addEventListener('click', function(e) {
         e.preventDefault();
+        e.stopPropagation();
         zoomedImg.src = img.src;
-        zoomedImg.alt = img.alt;
+        zoomedImg.alt = img.alt || 'Zoomed image';
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
       });
@@ -492,16 +514,41 @@
     // Close zoom on overlay click or close button
     overlay.addEventListener('click', function(e) {
       if (e.target === overlay || e.target === closeBtn) {
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
+        closeZoom();
       }
     });
 
     // Close on Escape key
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && overlay.classList.contains('active')) {
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
+        closeZoom();
+      }
+    });
+
+    // Close zoom function
+    function closeZoom() {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Add pinch-to-zoom support for mobile
+    let scale = 1;
+    let panning = false;
+    let pointX = 0;
+    let pointY = 0;
+    let start = { x: 0, y: 0 };
+
+    // Touch events for mobile zoom
+    zoomedImg.addEventListener('touchstart', function(e) {
+      if (e.touches.length === 2) {
+        e.preventDefault();
+      }
+    });
+
+    zoomedImg.addEventListener('touchmove', function(e) {
+      if (e.touches.length === 2) {
+        e.preventDefault();
+        // Pinch zoom logic could be added here
       }
     });
   }

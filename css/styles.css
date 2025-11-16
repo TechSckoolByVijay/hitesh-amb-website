@@ -790,12 +790,13 @@ nav ul li a.order-link {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0, 0, 0, 0.95);
   z-index: 9999;
   cursor: zoom-out;
   align-items: center;
   justify-content: center;
   padding: 2rem;
+  backdrop-filter: blur(5px);
 }
 
 .image-zoom-overlay.active {
@@ -803,12 +804,17 @@ nav ul li a.order-link {
 }
 
 .image-zoom-overlay img {
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 95%;
+  max-height: 95%;
   object-fit: contain;
-  border-radius: 12px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
   animation: zoomIn 0.3s ease;
+  cursor: grab;
+}
+
+.image-zoom-overlay img:active {
+  cursor: grabbing;
 }
 
 @keyframes zoomIn {
@@ -831,11 +837,21 @@ nav ul li a.order-link {
   font-weight: bold;
   cursor: pointer;
   z-index: 10000;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, color 0.2s ease;
+  background: rgba(0, 0, 0, 0.5);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
 }
 
 .zoom-close:hover {
-  transform: scale(1.2);
+  transform: scale(1.2) rotate(90deg);
+  color: var(--primary-saffron);
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .menu-item-info {
@@ -949,12 +965,40 @@ nav ul li a.order-link {
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  position: relative;
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
+.product-image::after {
+  content: '🔍';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 0.4rem 0.6rem;
+  border-radius: 50%;
+  font-size: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.product-image:hover::after {
+  opacity: 1;
 }
 
 .product-image img {
   max-height: 100%;
   max-width: 100%;
   object-fit: contain;
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+
+.product-image:hover img {
+  transform: scale(1.05);
 }
 
 .product-info {
@@ -996,11 +1040,24 @@ nav ul li a.order-link {
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 4px 12px var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blessing-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px var(--shadow);
 }
 
 .blessing-card img {
   max-width: 150px;
   margin: 0 auto 1rem;
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+  border-radius: 8px;
+}
+
+.blessing-card img:hover {
+  transform: scale(1.1);
 }
 
 .blessing-card h3 {
@@ -1031,6 +1088,32 @@ nav ul li a.order-link {
   align-items: center;
   justify-content: center;
   padding: 1rem;
+  cursor: zoom-in;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px var(--shadow);
+}
+
+.gallery-item::after {
+  content: '🔍';
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.gallery-item:hover::after {
+  opacity: 1;
 }
 
 .gallery-item img {
@@ -1038,6 +1121,7 @@ nav ul li a.order-link {
   max-height: 100%;
   object-fit: contain;
   transition: transform 0.3s ease;
+  cursor: zoom-in;
 }
 
 .gallery-item:hover img {
