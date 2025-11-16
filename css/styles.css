@@ -1250,6 +1250,16 @@ footer {
    ========================================== */
 
 @media (max-width: 768px) {
+  /* Increase base font size for better mobile readability */
+  html {
+    font-size: 18px;
+  }
+
+  body {
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+
   .menu-toggle {
     display: block;
   }
@@ -1262,8 +1272,17 @@ footer {
   }
 
   .call-btn {
-    font-size: 0.75rem;
-    padding: 0.3rem 0.6rem;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+  }
+
+  /* Logo text sizing for mobile */
+  .logo h1 {
+    font-size: 1.3rem;
+  }
+
+  .logo p {
+    font-size: 0.9rem;
   }
 
   /* Theme Toggle - Mobile Optimized */
@@ -1370,23 +1389,38 @@ footer {
     display: block;
     padding: 1rem;
     border-radius: 0;
+    font-size: 1.1rem;
   }
 
   .hero h1 {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
   }
 
   .hero .subtext {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   .section-title {
-    font-size: 1.6rem;
+    font-size: 2rem;
+  }
+
+  /* Increase product/menu image sizes for mobile */
+  .menu-item-image {
+    height: 280px;
+  }
+
+  .product-card img {
+    height: 280px;
+  }
+
+  .blessing-card img {
+    height: 200px;
   }
 
   .menu-grid,
   .product-grid {
     grid-template-columns: 1fr;
+    gap: 2.5rem;
   }
 
   .cta-buttons {
@@ -1396,23 +1430,76 @@ footer {
 
   .btn {
     width: 100%;
+    font-size: 1.1rem;
+    padding: 0.9rem 1.5rem;
   }
 
   .category-title {
+    font-size: 1.8rem;
+  }
+
+  /* Increase text sizes in cards */
+  .menu-item-info h3 {
+    font-size: 1.35rem;
+  }
+
+  .menu-price {
+    font-size: 1.6rem;
+  }
+
+  .sawamani-price {
+    font-size: 1.15rem;
+  }
+
+  .description-small {
+    font-size: 1.05rem;
+  }
+
+  .product-card h3 {
     font-size: 1.4rem;
+  }
+
+  .product-price {
+    font-size: 1.5rem;
   }
 
   .contact-grid {
     grid-template-columns: 1fr;
   }
 
+  /* Larger paragraph text */
+  p {
+    font-size: 1.1rem;
+  }
+
+  /* Contact info text */
+  .contact-box h3,
+  .contact-item h3 {
+    font-size: 1.3rem;
+  }
+
+  .contact-box p,
+  .contact-item p {
+    font-size: 1.1rem;
+  }
+
+  /* Footer text */
+  footer p {
+    font-size: 1rem;
+  }
+
   .ram-ram-text {
-    font-size: 0.8rem;
+    font-size: 0.95rem;
   }
 }
 
 /* Extra Small Screens (Mobile Portrait) */
 @media (max-width: 480px) {
+  /* Keep base font size large for readability */
+  html {
+    font-size: 17px;
+  }
+
   .theme-toggle-container {
     top: 8px;
     right: 8px;
@@ -1424,7 +1511,7 @@ footer {
 
   .theme-option {
     padding: 5px 7px;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     border-radius: 12px;
   }
 
@@ -1442,18 +1529,36 @@ footer {
   }
 
   .music-control {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     padding: 2px;
   }
 
   .music-title {
-    font-size: 0.7rem;
-    max-width: 60px;
+    font-size: 0.8rem;
+    max-width: 70px;
   }
 
   .volume-control {
-    width: 50px;
+    width: 55px;
     height: 4px;
+  }
+
+  /* Maintain readable heading sizes */
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  /* Keep images large enough */
+  .menu-item-image {
+    height: 260px;
+  }
+
+  .product-card img {
+    height: 260px;
   }
 }
 
