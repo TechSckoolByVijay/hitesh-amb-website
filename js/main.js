@@ -526,6 +526,7 @@
     const audio = document.getElementById('bg-music');
     const playPauseBtn = document.getElementById('play-pause');
     const volumeControl = document.getElementById('volume');
+    const musicPlayer = document.getElementById('music-player');
     
     if (!audio || !playPauseBtn || !volumeControl) return;
 
@@ -534,8 +535,12 @@
 
     // Auto-play music (with user interaction required by browsers)
     const playMusic = () => {
-      audio.play().catch(err => {
+      audio.play().then(() => {
+        playPauseBtn.textContent = '🔇';
+        if (musicPlayer) musicPlayer.style.display = 'flex';
+      }).catch(err => {
         console.log('Auto-play prevented. User interaction required.');
+        playPauseBtn.textContent = '🔊';
       });
     };
 
@@ -549,14 +554,15 @@
     document.addEventListener('click', startMusicOnInteraction, { once: true });
     document.addEventListener('touchstart', startMusicOnInteraction, { once: true });
 
-    // Play/Pause control
-    playPauseBtn.addEventListener('click', function() {
+    // Play/Pause control (toggle mute/unmute)
+    playPauseBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
       if (audio.paused) {
         audio.play();
-        this.textContent = '⏸️';
+        this.textContent = '🔇';
       } else {
         audio.pause();
-        this.textContent = '▶️';
+        this.textContent = '🔊';
       }
     });
 
@@ -567,11 +573,11 @@
 
     // Update play/pause button when audio state changes
     audio.addEventListener('play', () => {
-      playPauseBtn.textContent = '⏸️';
+      playPauseBtn.textContent = '🔇';
     });
 
     audio.addEventListener('pause', () => {
-      playPauseBtn.textContent = '▶️';
+      playPauseBtn.textContent = '🔊';
     });
   }
 
