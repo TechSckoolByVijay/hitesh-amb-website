@@ -287,7 +287,7 @@
   // ==========================================
   function initWhatsAppOrdering() {
     const whatsappButtons = document.querySelectorAll('[data-whatsapp-order]');
-    const whatsappNumber = '919694018427';
+    const whatsappNumber = '916375635619'; // Primary inquiry number
 
     whatsappButtons.forEach(button => {
       button.addEventListener('click', function(e) {
@@ -456,7 +456,7 @@
         
         const whatsappMessage = `Contact Form Submission:\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
         const encodedMessage = encodeURIComponent(whatsappMessage);
-        const whatsappUrl = `https://wa.me/919694018427?text=${encodedMessage}`;
+        const whatsappUrl = `https://wa.me/916375635619?text=${encodedMessage}`; // Primary inquiry number
         
         window.open(whatsappUrl, '_blank');
       });
