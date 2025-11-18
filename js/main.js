@@ -40,16 +40,12 @@
           'slide4.svg'
         ];
         
-        // Verify each image exists
-        const imagePromises = knownImages.map(img => 
-          checkImageExists(`${sliderPath}${img}`)
-        );
-
-        const results = await Promise.all(imagePromises);
-        const foundImages = results.filter(img => img !== null);
+        // Add images directly without verification to ensure slider shows
+        knownImages.forEach(img => {
+          sliderImages.push(`${sliderPath}${img}`);
+        });
         
-        if (foundImages.length > 0) {
-          sliderImages.push(...foundImages);
+        if (sliderImages.length > 0) {
           initSlider();
         } else {
           console.log('No slider images found');
@@ -57,16 +53,6 @@
       } catch (error) {
         console.error('Error loading slider images:', error);
       }
-    }
-
-    // Check if image exists
-    function checkImageExists(imagePath) {
-      return new Promise((resolve) => {
-        const img = new Image();
-        img.onload = () => resolve(imagePath);
-        img.onerror = () => resolve(null);
-        img.src = imagePath;
-      });
     }
 
     // Initialize slider with loaded images

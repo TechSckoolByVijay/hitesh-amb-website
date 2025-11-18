@@ -471,6 +471,7 @@ nav ul li a.order-link {
   position: relative;
   width: 100%;
   aspect-ratio: 21 / 9;
+  min-height: 400px; /* Fallback if aspect-ratio not supported */
   background: var(--cream);
 }
 
