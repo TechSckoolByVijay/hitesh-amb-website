@@ -1497,8 +1497,8 @@ footer {
   /* Theme Toggle - Mobile Optimized */
   .theme-toggle-container {
     position: fixed;
-    top: 5px;
-    right: 60px;
+    top: 60px;
+    right: 5px;
     padding: 4px 6px;
     gap: 3px;
     border-radius: 20px;

@@ -26,42 +26,30 @@
     // Fetch images from the slider directory
     async function loadSliderImages() {
       try {
-        // Get all files in the slider directory
-        const imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp'];
         const sliderPath = 'images/slider/';
         
-        // Try to load common image files
-        // Since we can't directly list directory contents in browser,
-        // we'll try to load images with common naming patterns
-        const imagePromises = [];
+        // Hardcode known slider images to avoid 404 spam
+        // Update this list when adding new slider images
+        const knownImages = [
+          'banner1.jpg',
+          'banner2.jpg',
+          'image1.jpg',
+          'slide1.svg',
+          'slide2.svg',
+          'slide3.svg',
+          'slide4.svg'
+        ];
         
-        // Try numbered slides (slide1, slide2, etc.) up to 20
-        for (let i = 1; i <= 20; i++) {
-          for (const ext of imageExtensions) {
-            imagePromises.push(
-              checkImageExists(`${sliderPath}slide${i}.${ext}`)
-            );
-          }
-        }
-        
-        // Try other common patterns
-        const commonNames = ['banner1', 'banner2', 'banner3', 'image1', 'image2', 'image3'];
-        for (const name of commonNames) {
-          for (const ext of imageExtensions) {
-            imagePromises.push(
-              checkImageExists(`${sliderPath}${name}.${ext}`)
-            );
-          }
-        }
+        // Verify each image exists
+        const imagePromises = knownImages.map(img => 
+          checkImageExists(`${sliderPath}${img}`)
+        );
 
         const results = await Promise.all(imagePromises);
         const foundImages = results.filter(img => img !== null);
         
-        // Remove duplicates (in case same image exists in multiple formats)
-        const uniqueImages = [...new Set(foundImages)];
-        
-        if (uniqueImages.length > 0) {
-          sliderImages.push(...uniqueImages);
+        if (foundImages.length > 0) {
+          sliderImages.push(...foundImages);
           initSlider();
         } else {
           console.log('No slider images found');
