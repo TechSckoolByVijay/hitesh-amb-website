@@ -1402,6 +1402,9 @@ footer {
     right: 1rem;
     font-size: 2rem;
     z-index: 1003;
+    pointer-events: auto;
+    touch-action: manipulation;
+    cursor: pointer;
   }
 
   /* Hide desktop navigation on mobile */

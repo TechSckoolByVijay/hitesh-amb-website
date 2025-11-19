@@ -170,14 +170,21 @@
     const nav = document.querySelector('nav');
     const navLinks = document.querySelectorAll('nav ul li a');
 
+    console.log('initMobileMenu called');
+    console.log('menuToggle:', menuToggle);
+    console.log('nav:', nav);
+
     if (menuToggle && nav) {
       // Create overlay element
       const overlay = document.createElement('div');
       overlay.className = 'mobile-menu-overlay';
       document.body.appendChild(overlay);
 
+      console.log('Adding click listener to menu toggle');
+
       // Toggle menu on button click
       menuToggle.addEventListener('click', function(e) {
+        console.log('Menu toggle clicked!');
         e.stopPropagation();
         const isActive = nav.classList.toggle('active');
         menuToggle.setAttribute('aria-expanded', isActive);
@@ -187,6 +194,18 @@
         // Prevent body scroll when menu is open
         document.body.style.overflow = isActive ? 'hidden' : '';
       });
+
+      // Also listen for touch events on mobile
+      menuToggle.addEventListener('touchstart', function(e) {
+        console.log('Menu toggle touched!');
+        e.preventDefault();
+        e.stopPropagation();
+        const isActive = nav.classList.toggle('active');
+        menuToggle.setAttribute('aria-expanded', isActive);
+        menuToggle.textContent = isActive ? '✕' : '☰';
+        overlay.classList.toggle('active', isActive);
+        document.body.style.overflow = isActive ? 'hidden' : '';
+      }, { passive: false });
 
       // Close menu when clicking a link
       navLinks.forEach(link => {
